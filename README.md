@@ -19,3 +19,18 @@ Static HTML site. No WordPress, no plugins, no build step beyond `scripts/build.
 ## Local commands
 - `python3 scripts/build.py` — rebuild index.html
 - `python3 -m http.server` — preview locally
+
+## Daily ops — gift link collection
+
+`scripts/collect.py` is the gatekeeper between a candidate link and the live page.
+
+**Morning loop (assisted — Facebook blocks unattended scraping):**
+1. Open the official Match Masters Facebook page, copy new gift post URLs + reward text.
+2. `python3 scripts/collect.py add --url <URL> --label "Free Coins" --amount "500" --source-url <post URL> --posted-at 2026-09-28T09:00`
+   - strips tracking params, dedupes, liveness-checks (must resolve on the official link domain)
+   - refuses anything that fails — never publishes unchecked links
+3. `python3 scripts/build.py` → `git add -A && git commit && git push`
+4. `recheck` re-verifies the 3-day window; `prune` trims the archive.
+
+**Honesty rule:** liveness = URL resolves. It is NOT proof of in-game redemption.
+Cards show "checked Xh ago", never "verified working in-game".
