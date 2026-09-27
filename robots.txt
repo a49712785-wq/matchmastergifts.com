@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://matchmastergifts.com/sitemap.xml
