@@ -101,24 +101,24 @@ h2.sec{margin:26px 0 10px;font-size:1.2rem}
 
 FAQ = [
     ("How often are the gift links updated?",
-     "Every day. Each link shows exactly when it was checked, so you always know how fresh it is."),
+     "Every morning. Each gift card shows the exact time that link was checked, so you never have to guess how fresh it is."),
     ("How long do Match Masters gift links last?",
-     "Links are valid for about 3 days from the day they are issued. We automatically remove expired links — you will never see a dead link in the live list."),
+     "About 3 days from the day they are issued. We remove expired links automatically, and the countdown on each card is our best measured estimate \u2014 we are still calibrating it against real expiry data, and we will update this answer as we learn more."),
     ("Why does a link say 'already claimed'?",
-     "Each gift link can be claimed once per account. If you already tapped it before, the game will tell you it is claimed. Try the other links for today."),
-    ("The link opens a Facebook error page. What do I do?",
-     "Open the link on the same phone or tablet where Match Masters is installed, and make sure your Facebook account is connected to the game. Gift links do not work on desktop browsers."),
-    ("Are these links safe?",
-     "Yes. Every link comes from Match Masters' official posts and points to the game's official domain. We never ask for your password — any site that does is a scam."),
+     "Each gift link can be claimed only once per account. If you tapped it before, the game remembers. Just try the other links for today \u2014 they are separate gifts."),
+    ("The link opened a Facebook error page. What now?",
+     "That happens when the link is opened somewhere the game cannot reach it. Open the link on the same phone or tablet where Match Masters is installed, and make sure your Facebook account is connected inside the game. Gift links do not work in desktop browsers."),
+    ("Are these links safe to tap?",
+     "Yes. Every link on this page comes from Match Masters' official posts and points to the game's official link domain. We never ask for your password or login \u2014 any site that does is running a scam, close it immediately."),
     ("Do the links work in my country?",
-     "Most links work worldwide, but a few can be region-locked by the game maker. If one does not work for you, the rest of today's links still will."),
+     "Almost always yes. A small number of links can be region-locked by the game maker. If one link does not work for you, the rest of today's links still will."),
 ]
 
 HOWTO = [
     "Tap any green gift button above <b>on the device where Match Masters is installed</b>.",
-    "The game will open automatically and a popup will show your reward.",
-    "Tap <b>Collect</b> in the game to add it to your account.",
-    "Come back tomorrow — new links are checked and published every day.",
+    "The game opens by itself and a popup shows your reward.",
+    "Tap <b>Collect</b> inside the game \u2014 the reward is added to your account instantly.",
+    "Done. Come back tomorrow \u2014 new links are checked and published every morning.",
 ]
 
 def link_card(l, now):
@@ -199,7 +199,7 @@ def build():
 </head>
 <body>
 <header><div class="wrap">
-<a class="brand" href="/">{BRAND.replace(' ', ' <span>')} </span></a>
+<a class="brand" href="/">Match Master <span>Gifts</span></a>
 <nav><a href="/">Today's Gifts</a><a href="/how-to-redeem.html">How to Redeem</a><a href="/methodology.html">How We Verify</a></nav>
 </div></header>
 <main><div class="wrap">
@@ -211,7 +211,7 @@ def build():
 {today_head}
 <div class="links">{today_block}</div>
 <div class="claim"><h3>How to claim (30 seconds)</h3><ol>{howto_html}</ol></div>
-<div class="warn">⚠️ <b>Desktop pe kaam nahi karega.</b> Links sirf us phone/tablet pe kholo jis pe Match Masters installed hai, aur Facebook game se connected ho.</div>
+<div class="warn">⚠️ <b>Links do not work on desktop.</b> Open them on the same phone or tablet where Match Masters is installed, with your Facebook account connected to the game \u2014 otherwise you will land on a Facebook error page.</div>
 <h2 class="sec">Previous days</h2>
 {prev_blocks if prev_blocks else '<p style="color:var(--mut);font-size:.9rem">Archive builds up as we publish daily.</p>'}
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
