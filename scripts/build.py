@@ -214,6 +214,12 @@ def build():
 <div class="warn">⚠️ <b>Links do not work on desktop.</b> Open them on the same phone or tablet where Match Masters is installed, with your Facebook account connected to the game \u2014 otherwise you will land on a Facebook error page.</div>
 <h2 class="sec">Previous days</h2>
 {prev_blocks if prev_blocks else '<p style="color:var(--mut);font-size:.9rem">Archive builds up as we publish daily.</p>'}
+<section style="margin-top:34px"><h2>\U0001f4da Match Masters guides</h2>
+<div style="display:grid;gap:10px;margin-top:12px">
+<a href="/free-boosters.html" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Boosters Guide</b><br><span style="color:var(--mut);font-size:.88rem">Every tier explained + 7 real ways to get boosters free</span></a>
+<a href="/free-coins.html" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Coins Guide</b><br><span style="color:var(--mut);font-size:.88rem">What coins do + 7 real ways to refill your balance</span></a>
+<a href="/how-to-redeem.html" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>How to Redeem Gift Links</b><br><span style="color:var(--mut);font-size:.88rem">Fix every error: Facebook error page, already claimed, expired</span></a>
+</div></section>
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
 </div></main>
 <footer><div class="wrap">
