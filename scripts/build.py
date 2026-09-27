@@ -136,7 +136,8 @@ def link_card(l, now):
     <span class="pill {cls}">{esc(exp)}</span>
     <span class="pill">src: {esc(l.get('source','official post'))}</span>
   </div>
-</a>"""
+</a>
+<div style="text-align:right;margin:-6px 4px 12px;font-size:.75rem"><a href="/contact.html" style="color:var(--mut)">Report broken link</a></div>"""
 
 def build():
     data = json.loads(DATA.read_text())
@@ -205,8 +206,9 @@ def build():
 <main><div class="wrap">
 <div class="hero">
 <h1>Match Masters Free Gifts — Today</h1>
-<div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live</div>
+<div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
 <p class="method">Every link below was checked before publishing. <a href="/methodology.html">How we verify →</a></p>
+<p class="method">🎁 <b>What you can get:</b> 🪙 Coins · 🚀 Boosters · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
 </div>
 {today_head}
 <div class="links">{today_block}</div>
