@@ -234,6 +234,7 @@ def build():
     OUT.write_text(page)
     print(f"built {OUT} ({len(page)} bytes, {n_live} live links)")
     inject_guides(now, days)
+    build_booster_pages()
 
 
 
@@ -276,6 +277,156 @@ def inject_guides(now, days):
                             f"Last updated: {fmt_date(now.strftime('%Y-%m-%d'))} — links refresh every morning.")
         fp.write_text(html)
         print(f"injected {len(cards)} {noun} link(s) into {fname}")
+
+
+# ---------- single-booster pages ----------
+
+BOOSTER_CSS = """
+:root{--bg:#0f172a;--card:#1e293b;--acc:#22c55e;--acc2:#16a34a;--txt:#f1f5f9;--mut:#94a3b8;--warn:#f59e0b;--gold:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:18px 0;border-bottom:1px solid #1e293b}
+.brand{font-size:1.35rem;font-weight:800;color:#fff;text-decoration:none}
+.brand span{color:var(--acc)}
+nav{margin-top:8px;font-size:.9rem}
+nav a{color:var(--mut);text-decoration:none;margin-right:16px}
+nav a:hover{color:#fff}
+main{padding:28px 0}
+h1{font-size:1.7rem;margin-bottom:4px;line-height:1.3}
+h2{font-size:1.2rem;margin:26px 0 10px;color:#fff}
+p{margin-bottom:14px;color:#cbd5e1}
+p a,li a{color:var(--acc)}
+.sub{color:var(--mut);font-size:.95rem;margin-bottom:14px}
+.answer{background:#052e16;border:1px solid var(--acc2);border-radius:14px;padding:16px 18px;margin:16px 0;font-size:.95rem}
+.answer b{color:var(--acc)}
+.tierbadge{display:inline-block;background:var(--card);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:3px 14px;font-size:.82rem;font-weight:700;margin-bottom:8px}
+.src{background:var(--card);border:1px solid #334155;border-radius:14px;padding:16px 18px;margin:12px 0}
+.src ul{margin:6px 0 0 20px;font-size:.93rem;color:#cbd5e1}
+.src li{margin-bottom:6px}
+.note{background:#451a03;border:1px solid var(--warn);border-radius:12px;padding:14px 18px;font-size:.9rem;color:#fdba74;margin:18px 0}
+.xlink{background:var(--card);border:1px solid #334155;border-radius:14px;padding:18px;margin:22px 0;font-size:.95rem}
+.xlink a{color:var(--acc);font-weight:700;text-decoration:none}
+.sib{display:grid;gap:10px;margin-top:12px}
+.sib a{background:var(--card);border:1px solid #334155;border-radius:12px;padding:12px 16px;color:#fff;text-decoration:none;display:block}
+.sib a b{color:var(--acc)}
+.sib a span{color:var(--mut);font-size:.85rem}
+details{margin:10px 0;background:var(--card);border:1px solid #334155;border-radius:12px;padding:12px 16px}
+summary{cursor:pointer;font-weight:700}
+details p,details ul{margin-top:8px;font-size:.93rem;color:#cbd5e1}
+details ul{margin-left:20px}
+footer{border-top:1px solid #1e293b;margin-top:34px;padding:22px 0 40px;font-size:.82rem;color:var(--mut)}
+footer a{color:var(--mut);margin-right:14px;text-decoration:none}
+footer a:hover{color:#fff}
+.disc{margin-top:12px;font-size:.76rem;color:#64748b}
+"""
+
+def _ans_html(a):
+    if isinstance(a, list):
+        return "<ul>" + "".join(f"<li>{esc(x)}</li>" for x in a) + "</ul>"
+    return f"<p>{esc(a)}</p>"
+
+def _ans_text(a):
+    return "; ".join(a) if isinstance(a, list) else str(a)
+
+def render_booster(b, siblings):
+    faq_html = "\n".join(
+        f"<details><summary>{esc(q)}</summary>{_ans_html(a)}</details>" for q, a in b["faq"])
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q,
+         "acceptedAnswer": {"@type": "Answer", "text": _ans_text(a)}} for q, a in b["faq"]]}
+    get_html = "\n".join(f"<li>{esc(x)}</li>" for x in b["how_to_get"])
+    sib_html = "\n".join(
+        f'<a href="/{s["slug"]}.html"><b>{esc(s["name"])}</b><br><span>{s["tier_emoji"]} {esc(s["tier"])} booster guide</span></a>'
+        for s in siblings)
+    stages_note = ""
+    if b["tier"] == "Diamond":
+        stages_note = ('<div class="note">💎 <b>Diamond boosters have 3 upgrade stages.</b> '
+                       "Collect duplicate cards from events, spins and album rewards — Stage 3 is "
+                       "dramatically stronger than Stage 1.</div>")
+    title = f'{b["name"]} in Match Masters (2026): What It Does, Best Mode & How to Get It Free'
+    desc = (f'{b["name"]} is a {b["tier"]} booster in Match Masters. '
+            "What it does, the best game mode for it, how to get it free, and the best perk combo — explained.")
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{SITE}/{b['slug']}.html">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{SITE}/{b['slug']}.html">
+<style>{BOOSTER_CSS}</style>
+<script type="application/ld+json">{json.dumps(faq_ld)}</script>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="/">Match Master <span>Gifts</span></a>
+<nav><a href="/">Today's Gifts</a><a href="/free-boosters.html">All Boosters</a><a href="/how-to-redeem.html">How to Redeem</a></nav>
+</div></header>
+<main><div class="wrap">
+<span class="tierbadge">{b['tier_emoji']} {esc(b['tier'])} booster</span>
+<h1>{esc(b['name'])}</h1>
+<p class="sub">Match Masters booster guide — what it does, where it shines, and how to get it free.</p>
+<div class="answer"><b>Quick answer:</b> {esc(b['ability'])} Unlock: {esc(b['unlock'])}. Details, free sources and the best perk combo below.</div>
+<h2>What {esc(b['name'])} does</h2>
+<p>{esc(b['ability'])}</p>
+{stages_note}
+<h2>Best game mode for {esc(b['name'])}</h2>
+<p>{esc(b['best_modes'])}</p>
+<h2>How to get {esc(b['name'])} free</h2>
+<div class="src"><ul>{get_html}</ul></div>
+<p>Also check <a href="/">today's verified gift links</a> every morning — booster drops land there whenever the game publishes them.</p>
+<h2>Best perk combo</h2>
+<p>{b['perk_combo']}</p>
+<h2>{esc(b['name'])} — FAQ</h2>
+{faq_html}
+<div class="xlink">🚀 <a href="/free-boosters.html">All booster tiers explained</a> · 🪙 <a href="/free-coins.html">Free coins guide</a> · 🎁 <a href="/">Today's gifts</a></div>
+<h2>Other popular boosters</h2>
+<div class="sib">{sib_html}</div>
+</div></main>
+<footer><div class="wrap">
+<a href="/about.html">About</a><a href="/methodology.html">How We Verify</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a>
+<p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. Booster details follow the game's own descriptions and player guides.</p>
+<p class="disc">© 2026 {BRAND}</p>
+</div></footer>
+</body>
+</html>"""
+
+def build_booster_pages():
+    """Render one HTML page per booster in data/boosters.json, then refresh the sitemap."""
+    data = json.loads((ROOT / "data" / "boosters.json").read_text())
+    boosters = data["boosters"]
+    for b in boosters:
+        sibs = [s for s in boosters if s["slug"] != b["slug"]]
+        (ROOT / f'{b["slug"]}.html').write_text(render_booster(b, sibs))
+        print(f"built booster page {b['slug']}.html")
+    build_sitemap([b["slug"] for b in boosters])
+
+def build_sitemap(booster_slugs):
+    static = [
+        ("/", "daily", "1.0"),
+        ("/how-to-redeem.html", "monthly", "0.8"),
+        ("/free-boosters.html", "monthly", "0.8"),
+        ("/free-coins.html", "monthly", "0.8"),
+        ("/methodology.html", "monthly", "0.6"),
+        ("/about.html", "yearly", "0.4"),
+        ("/contact.html", "yearly", "0.3"),
+        ("/privacy.html", "yearly", "0.3"),
+    ]
+    urls = "".join(
+        f'  <url><loc>{SITE}{p}</loc><changefreq>{f}</changefreq><priority>{pr}</priority></url>\n'
+        for p, f, pr in static)
+    for s in booster_slugs:
+        urls += (f'  <url><loc>{SITE}/{s}.html</loc>'
+                 "<changefreq>monthly</changefreq><priority>0.7</priority></url>\n")
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "</urlset>\n")
+    print(f"sitemap.xml written ({len(static) + len(booster_slugs)} urls)")
 
 
 if __name__ == "__main__":
