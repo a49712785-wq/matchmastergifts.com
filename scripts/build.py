@@ -66,6 +66,9 @@ nav a:hover{color:#fff}
 .trustbar b{color:var(--acc)}
 .method{font-size:.82rem;color:var(--mut);text-align:center;margin-bottom:6px}
 .method a{color:var(--acc)}
+.intro{margin:6px 0 4px}
+.intro h2{font-size:1.2rem;margin:0 0 10px}
+.intro p{font-size:.95rem;color:#cbd5e1;margin-bottom:12px}
 .links{margin:18px 0}
 .dayhead{display:flex;align-items:center;justify-content:space-between;margin:22px 0 10px}
 .dayhead h2{font-size:1.15rem}
@@ -207,6 +210,7 @@ def build():
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE}/">
+<meta property="article:modified_time" content="{esc(updated)}">
 <style>{CSS}</style>
 <script type="application/ld+json">{json.dumps(faq_ld)}</script>
 </head>
@@ -220,8 +224,11 @@ def build():
 <h1>Match Masters Free Gifts — Today</h1>
 <div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
 <p class="method">Every link below was checked before publishing. <a href="/methodology.html">How we verify →</a></p>
-<p class="method">🎁 <b>What you can get:</b> 🪙 Coins · 🚀 Boosters · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
+<p class="method">🎁 <b>What you can get:</b> <a href="/free-coins.html">🪙 Coins</a> · <a href="/free-boosters.html">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
 </div>
+<section class="intro"><h2>What are Match Masters free gifts?</h2>
+<p>Match Masters free gifts are reward links the game maker publishes on its official Facebook and Instagram pages — most days. Each link gives you something free in-game: coins, boosters, stickers, perks, or spins. Tap one on the phone or tablet where Match Masters is installed and the reward lands in your account.</p>
+<p>The catch: every link expires about 3 days after it is issued, and each can be claimed only once per account. That is why this page exists — we check the official posts every morning, verify each link, and publish only the ones that pass, stamped with the exact time they were checked. Dead links are removed automatically, so what you see here is always today's live batch.</p></section>
 {today_head}
 <div class="links">{today_block}</div>
 <div class="claim"><h3>How to claim (30 seconds)</h3><ol>{howto_html}</ol></div>
