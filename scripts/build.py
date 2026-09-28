@@ -112,6 +112,10 @@ FAQ = [
      "Yes. Every link on this page comes from Match Masters' official posts and points to the game's official link domain. We never ask for your password or login \u2014 any site that does is running a scam, close it immediately."),
     ("Do the links work in my country?",
      "Almost always yes. A small number of links can be region-locked by the game maker. If one link does not work for you, the rest of today's links still will."),
+    ("Are Match Masters free gifts legit?",
+     "The real ones are. The game maker publishes free gift links on its official Facebook and Instagram pages — every link on this page comes from those official posts. The rule is simple: legit gifts are always free and never ask for anything. Any site or video asking for your password, or telling you to download an \u201cAPK\u201d or \u201cgenerator\u201d to claim gifts, is a scam — close it and never install it."),
+    ("Where can I find Match Masters free gifts on Instagram?",
+     "On the game's official Instagram account, @matchmastersofficial, which posts reward links, sticker giveaways and mini-games. The catch: posts get buried fast and links expire in about 3 days. This page collects every verified link in one place each morning, so you don't have to scroll the feed."),
 ]
 
 HOWTO = [
