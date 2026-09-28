@@ -233,6 +233,50 @@ def build():
 </html>"""
     OUT.write_text(page)
     print(f"built {OUT} ({len(page)} bytes, {n_live} live links)")
+    inject_guides(now, days)
+
+
+
+import re as _re
+
+def inject_block(html, marker, block):
+    """Replace everything between <!-- MARKER:START --> and <!-- MARKER:END --> (idempotent)."""
+    start = f"<!-- {marker}:START -->"
+    end = f"<!-- {marker}:END -->"
+    pat = _re.compile(_re.escape(start) + r".*?" + _re.escape(end), _re.S)
+    new = start + "\n" + block + "\n" + end
+    return pat.sub(new, html, count=1)
+
+def inject_guides(now, days):
+    """Push today's filtered live links + fresh date into the coins/boosters pillar pages."""
+    live = days[0]["links"] if days and days[0].get("links") else []
+    jobs = [
+        ("free-coins.html", "LIVE-COIN-LINKS",
+         lambda l: "coin" in l.get("label", "").lower(), "coin"),
+        ("free-boosters.html", "LIVE-BOOSTER-LINKS",
+         lambda l: "booster" in l.get("label", "").lower(), "booster"),
+    ]
+    for fname, marker, filt, noun in jobs:
+        fp = ROOT / fname
+        if not fp.exists():
+            continue
+        html = fp.read_text()
+        cards = [l for l in live if filt(l)]
+        if cards:
+            block = ('<div class="livewrap"><h3>\U0001f381 Today\u2019s verified free ' + noun +
+                     ' links</h3><div class="links">' +
+                     "\n".join(link_card(l, now) for l in cards) +
+                     '</div><p class="srcnote">Checked before publishing. <a href="/methodology.html">How we verify \u2192</a></p></div>')
+        else:
+            block = ('<div class="livewrap"><h3>\U0001f381 Today\u2019s verified free ' + noun +
+                     ' links</h3><p class="emptysm">No ' + noun +
+                     ' links in today\u2019s batch — see <a href="/">today\u2019s full gift list</a>.</p></div>')
+        html = inject_block(html, marker, block)
+        html = inject_block(html, "GUIDE-UPDATED",
+                            f"Last updated: {fmt_date(now.strftime('%Y-%m-%d'))} — links refresh every morning.")
+        fp.write_text(html)
+        print(f"injected {len(cards)} {noun} link(s) into {fname}")
+
 
 if __name__ == "__main__":
     build()
