@@ -116,6 +116,14 @@ FAQ = [
      "The real ones are. The game maker publishes free gift links on its official Facebook and Instagram pages — every link on this page comes from those official posts. The rule is simple: legit gifts are always free and never ask for anything. Any site or video asking for your password, or telling you to download an \u201cAPK\u201d or \u201cgenerator\u201d to claim gifts, is a scam — close it and never install it."),
     ("Where can I find Match Masters free gifts on Instagram?",
      "On the game's official Instagram account, @matchmastersofficial, which posts reward links, sticker giveaways and mini-games. The catch: posts get buried fast and links expire in about 3 days. This page collects every verified link in one place each morning, so you don't have to scroll the feed."),
+    ("Where can I find free links for Match Masters?",
+     "Right here. We check the game's official posts every morning and publish only links that pass verification, each stamped with its check time. Bookmark this page \u2014 today's links are always at the top."),
+    ("What are Match Masters rewards?",
+     "Five things: coins (the main currency), boosters (your in-match power-ups), stickers (for album completion), perks (pre-match advantages), and spins (for the Lucky Spin). Every gift link on this page prints exactly which reward it gives."),
+    ("Is there a promo code for Match Masters Market?",
+     "Not the way most games do it \u2014 Match Masters has no promo-code box to type into. Rewards come through gift links and Masters Market reward keys instead (our free coins guide explains how keys work). Any site selling a \u201cpromo code generator\u201d is running a scam; the real rewards are the free links on this page."),
+    ("What are some tricks and tips for Match Masters?",
+     "Four that actually matter: charge your booster faster by matching blue-starred tiles; save Diamond and Legendary boosters for ranked matches and tournaments; pair boosters with the right perk (Extra Moves suits board-clear boosters); and claim gift links daily \u2014 free boosters and coins compound fast. Our free boosters guide breaks down every tier."),
 ]
 
 HOWTO = [
