@@ -226,13 +226,13 @@ def build():
 <p class="method">Every link below was checked before publishing. <a href="/methodology.html">How we verify →</a></p>
 <p class="method">🎁 <b>What you can get:</b> <a href="/free-coins.html">🪙 Coins</a> · <a href="/free-boosters.html">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
 </div>
-<section class="intro"><h2>What are Match Masters free gifts?</h2>
-<p>Match Masters free gifts are reward links the game maker publishes on its official Facebook and Instagram pages — most days. Each link gives you something free in-game: coins, boosters, stickers, perks, or spins. Tap one on the phone or tablet where Match Masters is installed and the reward lands in your account.</p>
-<p>The catch: every link expires about 3 days after it is issued, and each can be claimed only once per account. That is why this page exists — we check the official posts every morning, verify each link, and publish only the ones that pass, stamped with the exact time they were checked. Dead links are removed automatically, so what you see here is always today's live batch.</p></section>
 {today_head}
 <div class="links">{today_block}</div>
 <div class="claim"><h3>How to claim (30 seconds)</h3><ol>{howto_html}</ol></div>
 <div class="warn">⚠️ <b>Links do not work on desktop.</b> Open them on the same phone or tablet where Match Masters is installed, with your Facebook account connected to the game \u2014 otherwise you will land on a Facebook error page.</div>
+<section class="intro"><h2>What are Match Masters free gifts?</h2>
+<p>Match Masters free gifts are reward links the game maker publishes on its official Facebook and Instagram pages — most days. Each link gives you something free in-game: coins, boosters, stickers, perks, or spins. Tap one on the phone or tablet where Match Masters is installed and the reward lands in your account.</p>
+<p>The catch: every link expires about 3 days after it is issued, and each can be claimed only once per account. That is why this page exists — we check the official posts every morning, verify each link, and publish only the ones that pass, stamped with the exact time they were checked. Dead links are removed automatically, so what you see here is always today's live batch.</p></section>
 <h2 class="sec">Previous days</h2>
 {prev_blocks if prev_blocks else '<p style="color:var(--mut);font-size:.9rem">Archive builds up as we publish daily.</p>'}
 <section style="margin-top:34px"><h2>\U0001f4da Match Masters guides</h2>
