@@ -25,18 +25,25 @@ def fmt_date(d):
     # d: "2026-09-27" -> "September 27, 2026"
     return datetime.strptime(d, "%Y-%m-%d").strftime("%B %d, %Y")
 
+def _as_pkt(dt):
+    # Stored timestamps are PKT-local naive ("YYYY-MM-DDTHH:MM"); make them
+    # tz-aware so arithmetic against the aware `now` doesn't raise TypeError.
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=PKT)
+    return dt
+
 def rel_hours(checked_at, now):
     try:
-        dt = datetime.fromisoformat(checked_at)
+        dt = _as_pkt(datetime.fromisoformat(checked_at))
         h = max(0, int((now - dt).total_seconds() // 3600))
         return f"{h}h ago" if h else "just now"
-    except Exception:
+    except (ValueError, TypeError):
         return ""
 
 def expiry_note(posted_at, now):
     # links valid ~3 days from issue
     try:
-        dt = datetime.fromisoformat(posted_at)
+        dt = _as_pkt(datetime.fromisoformat(posted_at))
         left = timedelta(days=3) - (now - dt)
         hrs = int(left.total_seconds() // 3600)
         if hrs <= 0:
@@ -44,7 +51,7 @@ def expiry_note(posted_at, now):
         if hrs < 24:
             return ("soon", f"Expires in ~{hrs}h")
         return ("ok", f"Expires in ~{hrs // 24}d {hrs % 24}h")
-    except Exception:
+    except (ValueError, TypeError):
         return ("ok", "")
 
 # ---------- template ----------
