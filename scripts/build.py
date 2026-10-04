@@ -16,6 +16,11 @@ PKT = timezone(timedelta(hours=5))
 SITE = "https://matchmastergifts.com"
 BRAND = "Match Master Gifts"
 
+ORG_LD = {"@context": "https://schema.org", "@type": "Organization",
+          "name": "Match Master Gifts", "url": "https://matchmastergifts.com/",
+          "logo": "https://matchmastergifts.com/og-image.jpg",
+          "description": "Independent fan site publishing verified daily Match Masters free gift links."}
+
 # ---------- helpers ----------
 
 def esc(s):
@@ -226,6 +231,7 @@ def build():
 <meta property="article:modified_time" content="{esc(updated)}">
 <style>{CSS}</style>
 <script type="application/ld+json">{json.dumps(faq_ld)}</script>
+<script type="application/ld+json">{json.dumps(ORG_LD)}</script>
 </head>
 <body>
 <header><div class="wrap">
@@ -411,6 +417,7 @@ def render_booster(b, siblings):
 <meta name="twitter:image" content="{SITE}/og-image.jpg">
 <style>{BOOSTER_CSS}</style>
 <script type="application/ld+json">{json.dumps(faq_ld)}</script>
+<script type="application/ld+json">{json.dumps(ORG_LD)}</script>
 </head>
 <body>
 <header><div class="wrap">
