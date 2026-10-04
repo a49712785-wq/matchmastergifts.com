@@ -164,7 +164,7 @@ def link_card(l, now):
     <span class="pill">src: {esc(l.get('source','official post'))}</span>
   </div>
 </a>
-<div style="text-align:right;margin:-6px 4px 12px;font-size:.75rem"><a href="/contact.html" style="color:var(--mut)">Report broken link</a></div>"""
+<div style="text-align:right;margin:-6px 4px 12px;font-size:.75rem"><a href="/contact/" style="color:var(--mut)">Report broken link</a></div>"""
 
 def build():
     data = json.loads(DATA.read_text())
@@ -241,14 +241,14 @@ def build():
 <body>
 <header><div class="wrap">
 <a class="brand" href="/">Match Master <span>Gifts</span></a>
-<nav><a href="/">Today's Gifts</a><a href="/how-to-redeem.html">How to Redeem</a><a href="/methodology.html">How We Verify</a></nav>
+<nav><a href="/">Today's Gifts</a><a href="/how-to-redeem/">How to Redeem</a><a href="/methodology/">How We Verify</a></nav>
 </div></header>
 <main><div class="wrap">
 <div class="hero">
 <h1>Match Masters Free Gifts — Today</h1>
 <div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
-<p class="method">Every link below was checked before publishing. <a href="/methodology.html">How we verify →</a></p>
-<p class="method">🎁 <b>What you can get:</b> <a href="/free-coins.html">🪙 Coins</a> · <a href="/free-boosters.html">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
+<p class="method">Every link below was checked before publishing. <a href="/methodology/">How we verify →</a></p>
+<p class="method">🎁 <b>What you can get:</b> <a href="/free-coins/">🪙 Coins</a> · <a href="/free-boosters/">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
 </div>
 {today_head}
 <div class="links">{today_block}</div>
@@ -261,14 +261,14 @@ def build():
 {prev_blocks if prev_blocks else '<p style="color:var(--mut);font-size:.9rem">Archive builds up as we publish daily.</p>'}
 <section style="margin-top:34px"><h2>\U0001f4da Match Masters guides</h2>
 <div style="display:grid;gap:10px;margin-top:12px">
-<a href="/free-boosters.html" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Boosters Guide</b><br><span style="color:var(--mut);font-size:.88rem">Every tier explained + 7 real ways to get boosters free</span></a>
-<a href="/free-coins.html" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Coins Guide</b><br><span style="color:var(--mut);font-size:.88rem">What coins do + 7 real ways to refill your balance</span></a>
-<a href="/how-to-redeem.html" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>How to Redeem Gift Links</b><br><span style="color:var(--mut);font-size:.88rem">Fix every error: Facebook error page, already claimed, expired</span></a>
+<a href="/free-boosters/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Boosters Guide</b><br><span style="color:var(--mut);font-size:.88rem">Every tier explained + 7 real ways to get boosters free</span></a>
+<a href="/free-coins/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Coins Guide</b><br><span style="color:var(--mut);font-size:.88rem">What coins do + 7 real ways to refill your balance</span></a>
+<a href="/how-to-redeem/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>How to Redeem Gift Links</b><br><span style="color:var(--mut);font-size:.88rem">Fix every error: Facebook error page, already claimed, expired</span></a>
 </div></section>
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
 </div></main>
 <footer><div class="wrap">
-<a href="/about.html">About</a><a href="/methodology.html">How We Verify</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a>
+<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a>
 <p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. All gift links come from the game's official posts.</p>
 <p class="disc">© 2026 {BRAND}</p>
 </div></footer>
@@ -303,9 +303,9 @@ def inject_guides(now, days):
         # must still surface — they ride along on both pillars as a mixed batch.
         return not is_coin(l) and not is_booster(l)
     jobs = [
-        ("free-coins.html", "LIVE-COIN-LINKS",
+        ("free-coins/index.html", "LIVE-COIN-LINKS",
          lambda l: is_coin(l) or unclassified(l), "coin"),
-        ("free-boosters.html", "LIVE-BOOSTER-LINKS",
+        ("free-boosters/index.html", "LIVE-BOOSTER-LINKS",
          lambda l: is_booster(l) or unclassified(l), "booster"),
     ]
     for fname, marker, filt, noun in jobs:
@@ -322,7 +322,7 @@ def inject_guides(now, days):
             block = ('<div class="livewrap"><h3>' + heading +
                      '</h3><div class="links">' +
                      "\n".join(link_card(l, now) for l in cards) +
-                     '</div><p class="srcnote">Checked before publishing. <a href="/methodology.html">How we verify \u2192</a></p></div>')
+                     '</div><p class="srcnote">Checked before publishing. <a href="/methodology/">How we verify \u2192</a></p></div>')
         else:
             block = ('<div class="livewrap"><h3>\U0001f381 Today\u2019s verified free ' + noun +
                      ' links</h3><p class="emptysm">No ' + noun +
@@ -392,7 +392,7 @@ def render_booster(b, siblings):
          "acceptedAnswer": {"@type": "Answer", "text": _ans_text(a)}} for q, a in b["faq"]]}
     get_html = "\n".join(f"<li>{esc(x)}</li>" for x in b["how_to_get"])
     sib_html = "\n".join(
-        f'<a href="/{s["slug"]}.html"><b>{esc(s["name"])}</b><br><span>{s["tier_emoji"]} {esc(s["tier"])} booster guide</span></a>'
+        f'<a href="/{s["slug"]}/"><b>{esc(s["name"])}</b><br><span>{s["tier_emoji"]} {esc(s["tier"])} booster guide</span></a>'
         for s in siblings)
     stages_note = ""
     if b["tier"] == "Diamond":
@@ -409,12 +409,12 @@ def render_booster(b, siblings):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
-<link rel="canonical" href="{SITE}/{b['slug']}.html">
+<link rel="canonical" href="{SITE}/{b['slug']}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="{SITE}/{b['slug']}.html">
+<meta property="og:url" content="{SITE}/{b['slug']}/">
 <meta property="og:image" content="{SITE}/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(title)}">
@@ -427,7 +427,7 @@ def render_booster(b, siblings):
 <body>
 <header><div class="wrap">
 <a class="brand" href="/">Match Master <span>Gifts</span></a>
-<nav><a href="/">Today's Gifts</a><a href="/free-boosters.html">All Boosters</a><a href="/how-to-redeem.html">How to Redeem</a></nav>
+<nav><a href="/">Today's Gifts</a><a href="/free-boosters/">All Boosters</a><a href="/how-to-redeem/">How to Redeem</a></nav>
 </div></header>
 <main><div class="wrap">
 <span class="tierbadge">{b['tier_emoji']} {esc(b['tier'])} booster</span>
@@ -446,12 +446,12 @@ def render_booster(b, siblings):
 <p>{b['perk_combo']}</p>
 <h2>{esc(b['name'])} — FAQ</h2>
 {faq_html}
-<div class="xlink">🚀 <a href="/free-boosters.html">All booster tiers explained</a> · 🪙 <a href="/free-coins.html">Free coins guide</a> · 🎁 <a href="/">Today's gifts</a></div>
+<div class="xlink">🚀 <a href="/free-boosters/">All booster tiers explained</a> · 🪙 <a href="/free-coins/">Free coins guide</a> · 🎁 <a href="/">Today's gifts</a></div>
 <h2>Other popular boosters</h2>
 <div class="sib">{sib_html}</div>
 </div></main>
 <footer><div class="wrap">
-<a href="/about.html">About</a><a href="/methodology.html">How We Verify</a><a href="/contact.html">Contact</a><a href="/privacy.html">Privacy</a>
+<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a>
 <p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. Booster details follow the game's own descriptions and player guides.</p>
 <p class="disc">© 2026 {BRAND}</p>
 </div></footer>
@@ -464,26 +464,28 @@ def build_booster_pages():
     boosters = data["boosters"]
     for b in boosters:
         sibs = [s for s in boosters if s["slug"] != b["slug"]]
-        (ROOT / f'{b["slug"]}.html').write_text(render_booster(b, sibs))
-        print(f"built booster page {b['slug']}.html")
+        outp = ROOT / b["slug"] / "index.html"
+        outp.parent.mkdir(parents=True, exist_ok=True)
+        outp.write_text(render_booster(b, sibs))
+        print(f"built booster page {b['slug']}/")
     build_sitemap([b["slug"] for b in boosters])
 
 def build_sitemap(booster_slugs):
     static = [
         ("/", "daily", "1.0"),
-        ("/how-to-redeem.html", "monthly", "0.8"),
-        ("/free-boosters.html", "monthly", "0.8"),
-        ("/free-coins.html", "monthly", "0.8"),
-        ("/methodology.html", "monthly", "0.6"),
-        ("/about.html", "yearly", "0.4"),
-        ("/contact.html", "yearly", "0.3"),
-        ("/privacy.html", "yearly", "0.3"),
+        ("/how-to-redeem/", "monthly", "0.8"),
+        ("/free-boosters/", "monthly", "0.8"),
+        ("/free-coins/", "monthly", "0.8"),
+        ("/methodology/", "monthly", "0.6"),
+        ("/about/", "yearly", "0.4"),
+        ("/contact/", "yearly", "0.3"),
+        ("/privacy/", "yearly", "0.3"),
     ]
     urls = "".join(
         f'  <url><loc>{SITE}{p}</loc><changefreq>{f}</changefreq><priority>{pr}</priority></url>\n'
         for p, f, pr in static)
     for s in booster_slugs:
-        urls += (f'  <url><loc>{SITE}/{s}.html</loc>'
+        urls += (f'  <url><loc>{SITE}/{s}/</loc>'
                  "<changefreq>monthly</changefreq><priority>0.7</priority></url>\n")
     (ROOT / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'

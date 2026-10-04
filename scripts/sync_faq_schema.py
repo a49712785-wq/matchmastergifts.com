@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_PAGES = ["free-coins.html", "free-boosters.html", "how-to-redeem.html"]
+DEFAULT_PAGES = ["free-coins/index.html", "free-boosters/index.html", "how-to-redeem/index.html"]
 
 LD_RE = re.compile(
     r'<script type="application/ld\+json">\{"@context":"https://schema\.org","@type":"FAQPage".*?</script>',

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://matchmastergifts.com/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://matchmastergifts.com/how-to-redeem.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://matchmastergifts.com/free-boosters.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://matchmastergifts.com/free-coins.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://matchmastergifts.com/methodology.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://matchmastergifts.com/about.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://matchmastergifts.com/contact.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://matchmastergifts.com/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://matchmastergifts.com/doctor-color.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://matchmastergifts.com/foxy-roxy.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://matchmastergifts.com/monkey-joo-joo.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://matchmastergifts.com/billie-boom.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://matchmastergifts.com/balloon-blast.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://matchmastergifts.com/how-to-redeem/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://matchmastergifts.com/free-boosters/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://matchmastergifts.com/free-coins/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://matchmastergifts.com/methodology/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://matchmastergifts.com/about/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://matchmastergifts.com/contact/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://matchmastergifts.com/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://matchmastergifts.com/doctor-color/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://matchmastergifts.com/foxy-roxy/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://matchmastergifts.com/monkey-joo-joo/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://matchmastergifts.com/billie-boom/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://matchmastergifts.com/balloon-blast/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
