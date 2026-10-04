@@ -213,10 +213,16 @@ def build():
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE}/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{SITE}/">
+<meta property="og:image" content="{SITE}/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(title)}">
+<meta name="twitter:description" content="{esc(desc)}">
+<meta name="twitter:image" content="{SITE}/og-image.jpg">
 <meta property="article:modified_time" content="{esc(updated)}">
 <style>{CSS}</style>
 <script type="application/ld+json">{json.dumps(faq_ld)}</script>
@@ -277,11 +283,19 @@ def inject_block(html, marker, block):
 def inject_guides(now, days):
     """Push today's filtered live links + fresh date into the coins/boosters pillar pages."""
     live = days[0]["links"] if days and days[0].get("links") else []
+    def is_coin(l):
+        return "coin" in l.get("label", "").lower()
+    def is_booster(l):
+        return "booster" in l.get("label", "").lower()
+    def unclassified(l):
+        # Links whose label matches neither pillar (e.g. "Social Solo Event")
+        # must still surface — they ride along on both pillars as a mixed batch.
+        return not is_coin(l) and not is_booster(l)
     jobs = [
         ("free-coins.html", "LIVE-COIN-LINKS",
-         lambda l: "coin" in l.get("label", "").lower(), "coin"),
+         lambda l: is_coin(l) or unclassified(l), "coin"),
         ("free-boosters.html", "LIVE-BOOSTER-LINKS",
-         lambda l: "booster" in l.get("label", "").lower(), "booster"),
+         lambda l: is_booster(l) or unclassified(l), "booster"),
     ]
     for fname, marker, filt, noun in jobs:
         fp = ROOT / fname
@@ -289,9 +303,13 @@ def inject_guides(now, days):
             continue
         html = fp.read_text()
         cards = [l for l in live if filt(l)]
+        all_mixed = bool(cards) and all(unclassified(l) for l in cards)
         if cards:
-            block = ('<div class="livewrap"><h3>\U0001f381 Today\u2019s verified free ' + noun +
-                     ' links</h3><div class="links">' +
+            heading = ("\U0001f381 Today\u2019s verified free gift links"
+                       if all_mixed else
+                       "\U0001f381 Today\u2019s verified free " + noun + " links")
+            block = ('<div class="livewrap"><h3>' + heading +
+                     '</h3><div class="links">' +
                      "\n".join(link_card(l, now) for l in cards) +
                      '</div><p class="srcnote">Checked before publishing. <a href="/methodology.html">How we verify \u2192</a></p></div>')
         else:
@@ -381,10 +399,16 @@ def render_booster(b, siblings):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="{SITE}/{b['slug']}.html">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="{SITE}/{b['slug']}.html">
+<meta property="og:image" content="{SITE}/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(title)}">
+<meta name="twitter:description" content="{esc(desc)}">
+<meta name="twitter:image" content="{SITE}/og-image.jpg">
 <style>{BOOSTER_CSS}</style>
 <script type="application/ld+json">{json.dumps(faq_ld)}</script>
 </head>
