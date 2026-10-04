@@ -128,9 +128,9 @@ FAQ = [
     ("Do the links work in my country?",
      "Almost always yes. A small number of links can be region-locked by the game maker. If one link does not work for you, the rest of today's links still will."),
     ("Are Match Masters free gifts legit?",
-     "The real ones are. The game maker publishes free gift links on its official Facebook and Instagram pages — every link on this page comes from those official posts. The rule is simple: legit gifts are always free and never ask for anything. Any site or video asking for your password, or telling you to download an \u201cAPK\u201d or \u201cgenerator\u201d to claim gifts, is a scam — close it and never install it."),
+     "The real ones are. The game maker publishes free gift links on its official Facebook page and WhatsApp channel — every link on this page comes from those official posts. The rule is simple: legit gifts are always free and never ask for anything. Any site or video asking for your password, or telling you to download an \u201cAPK\u201d or \u201cgenerator\u201d to claim gifts, is a scam — close it and never install it."),
     ("Where can I find Match Masters free gifts on Instagram?",
-     "On the game's official Instagram account, @matchmastersofficial, which posts reward links, sticker giveaways and mini-games. The catch: posts get buried fast and links expire in about 3 days. This page collects every verified link in one place each morning, so you don't have to scroll the feed."),
+     "On the game's official Instagram account, @matchmastersofficial — with one big caveat: its posts are comment-to-enter giveaways and mini-games, not tap-to-claim gift links. We audited 3 weeks of posts and found zero claim links in captions. Occasionally a reward key is hidden inside a post image instead. For actual tap-to-claim links, this page collects every verified one each morning, so you don't have to scroll the feed."),
     ("Where can I find free links for Match Masters?",
      "Right here. We check the game's official posts every morning and publish only links that pass verification, each stamped with its check time. Bookmark this page \u2014 today's links are always at the top."),
     ("What are Match Masters rewards?",
@@ -255,7 +255,7 @@ def build():
 <div class="claim"><h3>How to claim (30 seconds)</h3><ol>{howto_html}</ol></div>
 <div class="warn">⚠️ <b>Links do not work on desktop.</b> Open them on the same phone or tablet where Match Masters is installed, with your Facebook account connected to the game \u2014 otherwise you will land on a Facebook error page.</div>
 <section class="intro"><h2>What are Match Masters free gifts?</h2>
-<p>Match Masters free gifts are reward links the game maker publishes on its official Facebook and Instagram pages — most days. Each link gives you something free in-game: coins, boosters, stickers, perks, or spins. Tap one on the phone or tablet where Match Masters is installed and the reward lands in your account.</p>
+<p>Match Masters free gifts are reward links the game maker publishes on its official Facebook page and WhatsApp channel — most days. Each link gives you something free in-game: coins, boosters, stickers, perks, or spins. Tap one on the phone or tablet where Match Masters is installed and the reward lands in your account.</p>
 <p>The catch: every link expires about 3 days after it is issued, and each can be claimed only once per account. That is why this page exists — we check the official posts every morning, verify each link, and publish only the ones that pass, stamped with the exact time they were checked. Dead links are removed automatically, so what you see here is always today's live batch.</p></section>
 <h2 class="sec">Previous days</h2>
 {prev_blocks if prev_blocks else '<p style="color:var(--mut);font-size:.9rem">Archive builds up as we publish daily.</p>'}
