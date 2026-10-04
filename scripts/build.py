@@ -183,7 +183,12 @@ def build():
 
     if live_links:
         today_block = "\n".join(link_card(l, now) for l in live_links)
-        today_head = f'<div class="dayhead"><h2>Today — {fmt_date(days[0]["date"])}</h2><span class="live">{n_live} LIVE</span></div>'
+        bucket_date = days[0]["date"]
+        today_str = now.strftime("%Y-%m-%d")
+        # Honest label: the bucket is "Today" only when it actually is today.
+        day_label = (f"Today — {fmt_date(bucket_date)}" if bucket_date == today_str
+                     else f"Still live from {fmt_date(bucket_date)}")
+        today_head = f'<div class="dayhead"><h2>{day_label}</h2><span class="live">{n_live} LIVE</span></div>'
     else:
         today_head = ""
         today_block = """<div class="empty">Today's links are being checked right now.<br>
@@ -206,7 +211,7 @@ def build():
     faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
 
-    title = f"Match Masters Free Gifts Today ({fmt_date(days[0]['date']) if days else now.strftime('%B %d, %Y')}) – Verified Daily Links"
+    title = f"Match Masters Free Gifts Today ({now.strftime('%b %-d')}) \u2013 Verified Links"
     desc = ("Claim today's verified Match Masters free gift links. Every link is checked before publishing, "
             "with reward amounts and expiry times shown. Updated daily.")
 
