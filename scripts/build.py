@@ -222,6 +222,7 @@ def build():
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+<meta name="google-site-verification" content="FK_vAqjuZiMsAg4k-HZhlg8cA7oLIqLxHg3rjVCd0aY" />
 <link rel="canonical" href="{SITE}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{esc(title)}">
