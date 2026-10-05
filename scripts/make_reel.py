@@ -88,6 +88,13 @@ def build_caption(rewards):
     return "\n".join(lines)
 
 
+def build_comment():
+    return ("\U0001F381 Claim today's gifts here:\n"
+            f"\U0001F449 {SITE_URL}\n"
+            "\n"
+            "All links checked daily \u2014 claim fast, they expire! \u23F0")
+
+
 def build_youtube(rewards):
     n = len(rewards)
     hook = f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!"
@@ -96,10 +103,6 @@ def build_youtube(rewards):
         f"\U0001F447 CLAIM HERE: {SITE_URL}")
     return (f"{hook} #shorts\n\n{caption}\n\n"
             f"\U0001F310 {SITE_URL}")
-    return ("\U0001F381 Claim today's gifts here:\n"
-            f"\U0001F449 {SITE_URL}\n"
-            "\n"
-            "All links checked daily \u2014 claim fast, they expire! \u23F0")
 
 
 def main():
