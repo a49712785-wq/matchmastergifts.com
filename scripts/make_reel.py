@@ -9,9 +9,12 @@ text overlays (hook -> rewards -> CTA), and writes caption.txt + comment.txt.
 Output: brand/reels/daily/YYYY-MM-DD/{reel.mp4,caption.txt,comment.txt}
 Exits 0 with "SKIP" message when there are no active links (cron must not post).
 
-Content policy (user decision 2026-10-05): NO direct official gift links in FB
-posts/comments — only https://matchmastergifts.com/. Hashtags on every post.
-Honesty: cards say "checked Xh ago", never "verified working in-game".
+Content policy (user decision 2026-10-06, replaces 2026-10-05 rule): FB caption
+leads with https://matchmastergifts.com/ (hero CTA) + points to first comment;
+first comment carries the DIRECT gift links + site link ("two paths" strategy —
+data 2026-10-05: direct-link reel got 217 views, 87% non-follower reach).
+Hashtags on every post. Honesty: cards say "checked Xh ago", never
+"verified working in-game".
 """
 import json, os, subprocess, sys, datetime, glob, re
 
@@ -51,8 +54,9 @@ def active_links():
         for l in day.get("links", []):
             if l.get("last_status") == "ok":
                 name = (l.get("amount") or "").strip() or (l.get("label") or "").strip()
-                if name and not any(x["name"] == name for x in out):
-                    out.append({"name": name})
+                url = (l.get("url") or "").strip()
+                if name and url and not any(x["name"] == name for x in out):
+                    out.append({"name": name, "url": url})
             if len(out) >= MAX_REWARDS:
                 break
         if len(out) >= MAX_REWARDS:
@@ -78,8 +82,9 @@ def build_caption(rewards):
         lines.append(f"\u2705 {r['name']}")
     lines += [
         "",
-        "All links verified today \u2014 claim before they expire \u23F0",
-        "\U0001F447 LINK IN THE FIRST COMMENT",
+        f"\U0001F447 2 ways to claim \u2014 pick what's easy:",
+        f"\U0001F310 All links on our site: {SITE_URL}",
+        "\U0001F4AC OR tap the direct gift links in the FIRST COMMENT",
         "",
         "Follow for DAILY free gifts, reward keys & codes \u2705",
         "",
@@ -88,19 +93,27 @@ def build_caption(rewards):
     return "\n".join(lines)
 
 
-def build_comment():
-    return ("\U0001F381 Claim today's gifts here:\n"
-            f"\U0001F449 {SITE_URL}\n"
-            "\n"
-            "All links checked daily \u2014 claim fast, they expire! \u23F0")
+def build_comment(rewards):
+    n = len(rewards)
+    lines = [
+        "\U0001F381 Tap to claim (opens in Match Masters):",
+    ]
+    nums = ["1\uFE0F\u20E3", "2\uFE0F\u20E3", "3\uFE0F\u20E3"]
+    for i, r in enumerate(rewards):
+        lines.append(f"{nums[i]} {r['name']}: {r['url']}")
+    lines += [
+        "",
+        f"\U0001F310 All daily gifts + reward keys: {SITE_URL}",
+        "Links checked daily \u2014 claim fast, they expire! \u23F0",
+    ]
+    return "\n".join(lines)
 
 
 def build_youtube(rewards):
     n = len(rewards)
     hook = f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!"
     caption = build_caption(rewards).replace(
-        "\U0001F447 LINK IN THE FIRST COMMENT",
-        f"\U0001F447 CLAIM HERE: {SITE_URL}")
+        "\U0001F4AC OR tap the direct gift links in the FIRST COMMENT\n", "")
     return (f"{hook} #shorts\n\n{caption}\n\n"
             f"\U0001F310 {SITE_URL}")
 
@@ -156,7 +169,7 @@ def main():
     with open(os.path.join(out_dir, "caption.txt"), "w") as f:
         f.write(build_caption(rewards))
     with open(os.path.join(out_dir, "comment.txt"), "w") as f:
-        f.write(build_comment())
+        f.write(build_comment(rewards))
     with open(os.path.join(out_dir, "youtube.txt"), "w") as f:
         f.write(build_youtube(rewards))
 
