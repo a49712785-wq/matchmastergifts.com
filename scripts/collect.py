@@ -169,6 +169,81 @@ def cmd_prune(_a):
     return 0
 
 
+KEYS_DATA = ROOT / "data" / "keys.json"
+
+
+def load_keys():
+    return json.loads(KEYS_DATA.read_text())
+
+
+def save_keys(data):
+    data["updated"] = datetime.now(PKT).strftime("%Y-%m-%dT%H:%M")
+    KEYS_DATA.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+def cmd_add_key(a):
+    """Add a typed reward key spotted on an official channel.
+
+    Keys are NOT URLs — they cannot be HTTP liveness-checked. "Verified"
+    here means: a human (or the daily agent) saw this exact code on an
+    official Match Masters post/stream/channel. We never invent keys and
+    never copy them from fan sites without an official source.
+    """
+    data = load_keys()
+    code = a.key.strip()
+    if not code:
+        print("empty --key. Skipped."); return 3
+    seen = {k.get("key", "").lower() for k in data.get("keys", [])}
+    if code.lower() in seen:
+        print(f"DUPLICATE — key '{code}' already tracked. Skipped.")
+        return 1
+    try:
+        posted = datetime.fromisoformat(a.posted_at)
+    except ValueError:
+        print("bad --posted-at (use ISO like 2026-09-28T09:00)."); return 3
+    if posted.tzinfo is None:
+        posted = posted.replace(tzinfo=PKT)
+    now = datetime.now(PKT)
+    entry = {
+        "key": code,
+        "reward": a.reward or "",
+        "source": a.source or "official post",
+        "source_url": a.source_url or "",
+        "posted_at": posted.astimezone(PKT).strftime("%Y-%m-%dT%H:%M"),
+        "spotted_at": now.strftime("%Y-%m-%dT%H:%M"),
+        "status": "active",
+        "notes": a.notes or "",
+    }
+    data.setdefault("keys", []).insert(0, entry)
+    save_keys(data)
+    print(f"ADDED key '{code}' ({a.reward}). Now run: python3 scripts/build.py")
+    return 0
+
+
+def cmd_expire_keys(_a):
+    """Mark keys older than 7 days as expired (keys die fast; livestream
+    keys often within hours — the daily agent should expire those manually
+    when the source says so)."""
+    data = load_keys()
+    now = datetime.now(PKT)
+    cutoff = now - timedelta(days=7)
+    changed = 0
+    for k in data.get("keys", []):
+        if k.get("status") != "active":
+            continue
+        try:
+            posted = datetime.fromisoformat(k.get("posted_at", "")).replace(tzinfo=PKT)
+        except ValueError:
+            continue
+        if posted < cutoff:
+            k["status"] = "expired"
+            changed += 1
+            print(f"EXPIRED {k.get('key')}")
+    save_keys(data)
+    print(f"expired {changed} key(s).")
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description="Match Master Gifts link collector")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -187,6 +262,18 @@ def main():
 
     p = sub.add_parser("prune", help="trim archive buckets")
     p.set_defaults(fn=cmd_prune)
+
+    p = sub.add_parser("add-key", help="add one typed reward key (official source only)")
+    p.add_argument("--key", required=True, help="the exact code as shown officially")
+    p.add_argument("--reward", default="", help='e.g. "500 coins"')
+    p.add_argument("--source", default="official post")
+    p.add_argument("--source-url", default="")
+    p.add_argument("--posted-at", required=True, help="ISO, e.g. 2026-09-28T09:00")
+    p.add_argument("--notes", default="", help='e.g. "livestream key, may cap out"')
+    p.set_defaults(fn=cmd_add_key)
+
+    p = sub.add_parser("expire-keys", help="mark keys older than 7 days expired")
+    p.set_defaults(fn=cmd_expire_keys)
 
     a = ap.parse_args()
     sys.exit(a.fn(a))

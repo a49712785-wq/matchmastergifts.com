@@ -249,7 +249,7 @@ def build():
 <h1>Match Masters Free Gifts — Today</h1>
 <div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
 <p class="method">Every link below was checked before publishing. <a href="/methodology/">How we verify →</a></p>
-<p class="method">🎁 <b>What you can get:</b> <a href="/free-coins/">🪙 Coins</a> · <a href="/free-boosters/">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward.</p>
+<p class="method">🎁 <b>What you can get:</b> <a href="/free-coins/">🪙 Coins</a> · <a href="/free-boosters/">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward. · 🔑 <a href="/reward-keys/">Reward keys (typed codes)</a></p>
 </div>
 {today_head}
 <div class="links">{today_block}</div>
@@ -459,6 +459,187 @@ def render_booster(b, siblings):
 </body>
 </html>"""
 
+# ---------- reward keys page ----------
+
+KEYS_FAQ = [
+    ("What is a Match Masters reward key?",
+     "A short text code — usually a word plus digits, like the ones the game drops on social posts and livestreams — that you type into the Reward Keys section of the official Match Masters web hub. Each key gives you an in-game reward: coins, boosters, stickers, or perks."),
+    ("Where do I enter a reward key?",
+     "On the official Match Masters web hub (matchmasters.com). Open the hub, tap the 'Reward Keys' card, sign in with the QR code shown in your game app (no password needed), paste the key exactly as shown, and hit redeem. The reward lands in your game account."),
+    ("How are reward keys different from gift links?",
+     "Gift links are tap-to-claim URLs: you tap them on your phone and the game opens with your reward. Reward keys are typed codes: you copy the code and paste it into the Masters Market hub yourself. Same idea — free rewards — different mechanism. Promo codes are a third thing entirely: checkout discounts, not game rewards."),
+    ("Why isn't my key working?",
+     "Three usual reasons: the key already expired (livestream keys can die within hours), the key was already redeemed on your account (one use per account), or a typo — keys are case-sensitive, so copy-paste instead of retyping. If none of those fit, the key may have hit its redemption cap."),
+    ("How long do reward keys last?",
+     "It varies a lot. Keys from livestreams often expire within hours or when the redemption cap fills. Keys from social posts usually last a few days. We stamp every key with when we spotted it so you can judge freshness yourself."),
+    ("Can I use a key more than once?",
+     "No — one redemption per account, same as gift links. If it says already used, that account already claimed it."),
+    ("Where do new reward keys come from?",
+     "The game's official Facebook and Instagram posts (sometimes hidden in the post image), livestreams, the official Discord server, and the WhatsApp channel. We watch all of them and publish verified keys here."),
+    ("Are Match Masters code generators real?",
+     "No — every single one is a scam. Real keys are short words dropped on official channels. Any site promising 'unlimited keys', asking for your password, or making you complete surveys to 'unlock' a code is trying to steal your account or install malware. Only redeem keys through the game app or the official Market hub."),
+    ("Do reward keys work in my country?",
+     "Almost always yes. Like gift links, a small number can be region-locked by the game maker, but most keys work everywhere."),
+    ("Why are there no keys listed right now?",
+     "Because we only publish keys we've actually seen on official channels — and keys don't drop every day. An empty list means no verified live key exists at this moment, not that we're hiding any. Check back; the page updates whenever a new key is spotted."),
+]
+
+KEYS_CSS = """
+:root{--bg:#0f172a;--card:#1e293b;--acc:#22c55e;--acc2:#16a34a;--txt:#f1f5f9;--mut:#94a3b8;--warn:#f59e0b;--gold:#fbbf24}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:18px 0;border-bottom:1px solid #1e293b}
+.brand{font-size:1.35rem;font-weight:800;color:#fff;text-decoration:none}
+.brand span{color:var(--acc)}
+nav{margin-top:8px;font-size:.9rem}
+nav a{color:var(--mut);text-decoration:none;margin-right:16px}
+nav a:hover{color:#fff}
+main{padding:28px 0}
+h1{font-size:1.7rem;margin-bottom:4px;line-height:1.3}
+h2{font-size:1.2rem;margin:26px 0 10px;color:#fff}
+p{margin-bottom:14px;color:#cbd5e1}
+p a,li a{color:var(--acc)}
+.sub{color:var(--mut);font-size:.95rem;margin-bottom:14px}
+.keycard{background:var(--card);border:1px solid var(--acc2);border-radius:14px;padding:18px;margin-bottom:14px}
+.keycard .code{font-family:ui-monospace,monospace;font-size:1.5rem;font-weight:800;letter-spacing:2px;color:var(--acc);background:#0f172a;border:1px dashed var(--acc2);border-radius:10px;padding:10px 16px;display:inline-block;margin:8px 0;cursor:pointer}
+.keycard .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;font-size:.78rem;color:var(--mut)}
+.pill{background:#0f172a;border:1px solid #334155;border-radius:999px;padding:2px 10px}
+.pill.ok{color:var(--acc);border-color:var(--acc)}
+.empty{background:var(--card);border:1px dashed #475569;border-radius:14px;padding:28px;text-align:center;color:var(--mut);margin:18px 0}
+.steps{background:var(--card);border:1px solid #334155;border-radius:14px;padding:18px;margin:16px 0}
+.steps ol{margin-left:20px}
+.steps li{margin-bottom:10px;color:#cbd5e1}
+.vs{display:grid;gap:10px;margin:14px 0}
+.vs div{background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px}
+.vs b{color:var(--acc)}
+.warn{background:#451a03;border:1px solid var(--warn);border-radius:12px;padding:14px 18px;font-size:.9rem;color:#fdba74;margin:18px 0}
+details{margin:10px 0;background:var(--card);border:1px solid #334155;border-radius:12px;padding:12px 16px}
+summary{cursor:pointer;font-weight:700}
+details p{margin-top:8px;font-size:.93rem;color:#cbd5e1}
+footer{border-top:1px solid #1e293b;margin-top:34px;padding:22px 0 40px;font-size:.82rem;color:var(--mut)}
+footer a{color:var(--mut);margin-right:14px;text-decoration:none}
+footer a:hover{color:#fff}
+.disc{margin-top:12px;font-size:.76rem;color:#64748b}
+"""
+
+def key_card(k, now):
+    spotted = rel_hours(k.get("spotted_at", ""), now)
+    try:
+        posted = fmt_date(datetime.fromisoformat(k["posted_at"]).strftime("%Y-%m-%d"))
+    except (ValueError, TypeError, KeyError):
+        posted = ""
+    return f"""
+<div class="keycard">
+  <div style="font-weight:800">🎁 {esc(k.get('reward') or 'Mystery reward')}</div>
+  <div class="code" onclick="navigator.clipboard.writeText(this.innerText);this.style.borderColor='#22c55e'" title="Tap to copy">{esc(k.get('key',''))}</div>
+  <div style="font-size:.82rem;color:var(--mut)">Tap the code to copy it, then paste it in the hub's Reward Keys section.</div>
+  <div class="meta">
+    <span class="pill ok">✓ spotted {esc(spotted)} on {esc(k.get('source','official post'))}</span>
+    {f"<span class='pill'>posted {esc(posted)}</span>" if posted else ""}
+    {f"<span class='pill'>{esc(k.get('notes',''))}</span>" if k.get('notes') else ""}
+  </div>
+</div>"""
+
+def build_keys_page():
+    """Render reward-keys/index.html from data/keys.json."""
+    data = json.loads((ROOT / "data" / "keys.json").read_text())
+    now = datetime.now(PKT)
+    keys = [k for k in data.get("keys", []) if k.get("status") == "active"]
+    expired = [k for k in data.get("keys", []) if k.get("status") != "active"]
+
+    if keys:
+        cards = "\n".join(key_card(k, now) for k in keys)
+        live_block = f'<div class="dayhead"><h2>Working keys right now</h2><span class="live">{len(keys)} LIVE</span></div>\n{cards}'
+    else:
+        live_block = """<div class="empty"><b>No verified active keys right now.</b><br>
+        We only publish keys we've actually seen on official channels — and keys don't drop every day.
+        This page updates the moment a new key is spotted. Meanwhile, <a href="/">today's gift links</a> are live.</div>"""
+
+    exp_block = ""
+    if expired:
+        items = "".join(f"<li><code>{esc(k.get('key',''))}</code> — {esc(k.get('reward',''))} <span style='color:var(--mut)'>(expired)</span></li>" for k in expired[:10])
+        exp_block = f"<h2>Recently expired</h2><ul style='margin-left:20px;color:#cbd5e1'>{items}</ul><p style='font-size:.85rem;color:var(--mut)'>Don't try these — they're shown so you know we tracked them.</p>"
+
+    faq_html = "\n".join(
+        f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in KEYS_FAQ)
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in KEYS_FAQ]}
+
+    try:
+        upd_dt = datetime.fromisoformat(data.get("updated", ""))
+        upd_str = upd_dt.strftime("%B %d, %Y at %I:%M %p PKT")
+    except Exception:
+        upd_str = esc(data.get("updated", ""))
+
+    title = f"Match Masters Reward Keys ({now.strftime('%B %Y')}) – Working Codes"
+    desc = ("Working Match Masters reward keys and codes. Every key verified on official channels, "
+            "with redemption steps for the Masters Market hub. Updated whenever new keys drop.")
+
+    page = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(desc)}">
+<link rel="canonical" href="{SITE}/reward-keys/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(desc)}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{SITE}/reward-keys/">
+<meta property="og:image" content="{SITE}/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(title)}">
+<meta name="twitter:description" content="{esc(desc)}">
+<meta name="twitter:image" content="{SITE}/og-image.jpg">
+<style>{KEYS_CSS}</style>
+<script type="application/ld+json">{json.dumps(faq_ld)}</script>
+<script type="application/ld+json">{json.dumps(ORG_LD)}</script>
+</head>
+<body>
+<header><div class="wrap">
+<a class="brand" href="/">Match Master <span>Gifts</span></a>
+<nav><a href="/">Today's Gifts</a><a href="/reward-keys/">Reward Keys</a><a href="/how-to-redeem/">How to Redeem</a></nav>
+</div></header>
+<main><div class="wrap">
+<h1>Match Masters Reward Keys</h1>
+<p class="sub">Working codes, verified on official channels — updated whenever new keys drop. Last check: {upd_str}.</p>
+{live_block}
+<h2>How to redeem a reward key (2 minutes)</h2>
+<div class="steps"><ol>
+<li>Open the official Match Masters web hub at <b>matchmasters.com</b> on your phone or computer.</li>
+<li>Tap the <b>"Reward Keys"</b> card on the hub homepage.</li>
+<li>Sign in with the <b>QR code</b>: the hub shows a code, you enter the 4-digit number shown in your game app. No password needed — and never enter your password anywhere else.</li>
+<li><b>Paste the key exactly</b> as shown (keys are case-sensitive — copy, don't retype) and hit redeem.</li>
+<li>Open the game — your reward is waiting in your account.</li>
+</ol></div>
+<h2>Reward keys vs gift links vs promo codes</h2>
+<div class="vs">
+<div><b>🎁 Gift links</b> — tap-to-claim URLs. Tap on your phone, the game opens, reward lands. New ones <a href="/">every morning here</a>.</div>
+<div><b>🔑 Reward keys</b> — typed codes. Copy the code, paste it into the hub's Reward Keys section yourself. Drop irregularly — livestreams, social posts, events.</div>
+<div><b>🏷️ Promo codes</b> — checkout discounts for purchases. A different thing entirely; not game rewards.</div>
+</div>
+<h2>Where new keys come from</h2>
+<p>The game's official Facebook and Instagram posts (sometimes the key is hidden inside the post image), livestreams, the official Discord server, and the WhatsApp channel. Livestream keys are the fastest to die — sometimes within hours or when the redemption cap fills. We watch all of these and publish verified keys at the top of this page.</p>
+<div class="warn">⚠️ <b>Code generators are scams.</b> Any site promising "unlimited keys", asking for your password, or making you complete surveys to "unlock" a code is trying to steal your account. Real keys are short words dropped on official channels — and you only ever redeem them in the game app or the official Market hub.</div>
+{exp_block}
+<h2>Reward keys — FAQ</h2>
+{faq_html}
+</div></main>
+<footer><div class="wrap">
+<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a>
+<p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. Keys are published only after being spotted on the game's official channels.</p>
+<p class="disc">© 2026 {BRAND}</p>
+</div></footer>
+</body>
+</html>"""
+    outp = ROOT / "reward-keys" / "index.html"
+    outp.parent.mkdir(parents=True, exist_ok=True)
+    outp.write_text(page)
+    print(f"built reward-keys/ ({len(keys)} active keys)")
+
 def build_booster_pages():
     """Render one HTML page per booster in data/boosters.json, then refresh the sitemap."""
     data = json.loads((ROOT / "data" / "boosters.json").read_text())
@@ -469,11 +650,13 @@ def build_booster_pages():
         outp.parent.mkdir(parents=True, exist_ok=True)
         outp.write_text(render_booster(b, sibs))
         print(f"built booster page {b['slug']}/")
+    build_keys_page()
     build_sitemap([b["slug"] for b in boosters])
 
 def build_sitemap(booster_slugs):
     static = [
         ("/", "daily", "1.0"),
+        ("/reward-keys/", "daily", "0.9"),
         ("/how-to-redeem/", "monthly", "0.8"),
         ("/free-boosters/", "monthly", "0.8"),
         ("/free-coins/", "monthly", "0.8"),
