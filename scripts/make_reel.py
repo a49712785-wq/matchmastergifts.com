@@ -88,7 +88,14 @@ def build_caption(rewards):
     return "\n".join(lines)
 
 
-def build_comment():
+def build_youtube(rewards):
+    n = len(rewards)
+    hook = f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!"
+    caption = build_caption(rewards).replace(
+        "\U0001F447 LINK IN THE FIRST COMMENT",
+        f"\U0001F447 CLAIM HERE: {SITE_URL}")
+    return (f"{hook} #shorts\n\n{caption}\n\n"
+            f"\U0001F310 {SITE_URL}")
     return ("\U0001F381 Claim today's gifts here:\n"
             f"\U0001F449 {SITE_URL}\n"
             "\n"
@@ -147,6 +154,8 @@ def main():
         f.write(build_caption(rewards))
     with open(os.path.join(out_dir, "comment.txt"), "w") as f:
         f.write(build_comment())
+    with open(os.path.join(out_dir, "youtube.txt"), "w") as f:
+        f.write(build_youtube(rewards))
 
     print(f"OK: reel built -> {out_mp4} ({n} rewards, base={os.path.basename(base)})")
     print("rewards: " + " | ".join(r["name"] for r in rewards))
