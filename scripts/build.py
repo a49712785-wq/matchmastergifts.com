@@ -223,6 +223,7 @@ def build():
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="google-site-verification" content="FK_vAqjuZiMsAg4k-HZhlg8cA7oLIqLxHg3rjVCd0aY" />
+<meta name="google-site-verification" content="HXi2yIZGtRJ27YzPeDHc6Bw_To29TXPDb-qgVdodTbA" />
 <link rel="canonical" href="{SITE}/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:title" content="{esc(title)}">
