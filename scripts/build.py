@@ -187,13 +187,18 @@ def build():
     today_str = now.strftime("%Y-%m-%d")
     date_short = now.strftime("%b %-d")
     new_today = len(days[0].get("links", [])) if days and days[0].get("date") == today_str else 0
-    n_active = sum(1 for d in days for l in d.get("links", []) if l.get("last_status") == "ok")
+    # Count only links actually re-checked today and still live — not expired
+    # buckets whose last_status is merely stale-ok (fix 2026-10-06: was counting
+    # the expired Sep 28 link, printing "2 active links re-verified").
+    n_reverified = sum(1 for d in days for l in d.get("links", [])
+                       if (l.get("checked_at") or "").startswith(today_str)
+                       and l.get("last_status") == "ok")
     if new_today:
         status_line = (f"\U0001f381 {new_today} new gift{'s' if new_today > 1 else ''} "
                        f"added today ({date_short}) \u2014 claim fast, they expire!")
     else:
         status_line = (f"\U0001f4c5 {date_short}: No new drops today \u2014 "
-                       f"{n_active} active link{'s' if n_active != 1 else ''} re-verified \u2713 this morning.")
+                       f"{n_reverified} active link{'s' if n_reverified != 1 else ''} re-verified \u2713 this morning.")
 
     if live_links:
         today_block = "\n".join(link_card(l, now) for l in live_links)
@@ -269,7 +274,7 @@ def build():
 <main><div class="wrap">
 <div class="hero">
 <h1>Match Masters Free Gifts — Today</h1>
-<div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
+<div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> link{'s' if n_live != 1 else ''} checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
 <div class="dailystatus">{esc(status_line)}</div>
 <p class="method">Every link below was checked before publishing. <a href="/methodology/">How we verify →</a></p>
 <p class="method">🎁 <b>What you can get:</b> <a href="/free-coins/">🪙 Coins</a> · <a href="/free-boosters/">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward. · 🔑 <a href="/reward-keys/">Reward keys (typed codes)</a></p>
