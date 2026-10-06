@@ -17,6 +17,7 @@ Hashtags on every post. Honesty: cards say "checked Xh ago", never
 "verified working in-game".
 """
 import json, os, subprocess, sys, datetime, glob, re
+from zoneinfo import ZoneInfo
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LINKS_JSON = os.path.join(REPO, "data", "links.json")
@@ -56,7 +57,7 @@ def active_links():
                 name = (l.get("amount") or "").strip() or (l.get("label") or "").strip()
                 url = (l.get("url") or "").strip()
                 if name and url and not any(x["name"] == name for x in out):
-                    out.append({"name": name, "url": url})
+                    out.append({"name": name, "url": url, "date": day.get("date", "")})
             if len(out) >= MAX_REWARDS:
                 break
         if len(out) >= MAX_REWARDS:
@@ -72,12 +73,13 @@ def draw(text, color, size, y_off, t0, t1, sub=False):
             f"enable='between(t,{t0},{t1})'")
 
 
-def build_caption(rewards):
+def build_caption(rewards, breaking=False):
     n = len(rewards)
-    lines = [
-        f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!",
-        "",
-    ]
+    if breaking:
+        head = f"\U0001f195 {n} NEW GIFT{'S' if n > 1 else ''} JUST DROPPED in Match Masters!"
+    else:
+        head = f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!"
+    lines = [head, ""]
     for r in rewards:
         lines.append(f"\u2705 {r['name']}")
     lines += [
@@ -109,10 +111,13 @@ def build_comment(rewards):
     return "\n".join(lines)
 
 
-def build_youtube(rewards):
+def build_youtube(rewards, breaking=False):
     n = len(rewards)
-    hook = f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!"
-    caption = build_caption(rewards).replace(
+    if breaking:
+        hook = f"\U0001f195 {n} NEW GIFT{'S' if n > 1 else ''} JUST DROPPED in Match Masters!"
+    else:
+        hook = f"\U0001F381 {n} FREE GIFT{'S' if n > 1 else ''} LIVE in Match Masters!"
+    caption = build_caption(rewards, breaking).replace(
         "\U0001F4AC OR tap the direct gift links in the FIRST COMMENT\n", "")
     return (f"{hook} #shorts\n\n{caption}\n\n"
             f"\U0001F310 {SITE_URL}")
@@ -125,6 +130,15 @@ def main():
         return 0
 
     today = datetime.date.today()
+    today_str = today.isoformat()
+    # Breaking mode (user decision 2026-10-06 — freshness is key in this niche):
+    # reel built at/after 12:00 PKT and carrying links dropped today gets a
+    # "JUST DROPPED" hook/caption instead of the morning "LIVE" framing.
+    try:
+        pkt_hour = datetime.datetime.now(ZoneInfo("Asia/Karachi")).hour
+    except Exception:
+        pkt_hour = 0
+    breaking = pkt_hour >= 12 and any(r.get("date") == today_str for r in rewards)
     out_dir = os.path.join(OUT_ROOT, today.isoformat())
     os.makedirs(out_dir, exist_ok=True)
 
@@ -137,9 +151,13 @@ def main():
     n = len(rewards)
     filters = []
     t = 0.0
-    # Hook
-    hook = "FREE GIFT IS LIVE!" if n == 1 else "FREE GIFTS ARE LIVE!"
-    sub = f"{n} reward{'s' if n > 1 else ''} waiting"
+    # Hook (breaking variant when today's fresh drops are in the reel)
+    if breaking:
+        hook = "NEW DROP JUST LANDED!" if n == 1 else "NEW DROPS JUST LANDED!"
+        sub = "fresh gifts \u2014 claim now"
+    else:
+        hook = "FREE GIFT IS LIVE!" if n == 1 else "FREE GIFTS ARE LIVE!"
+        sub = f"{n} reward{'s' if n > 1 else ''} waiting"
     filters.append(draw(hook, "white", 88, -140, t, t + SEG))
     filters.append(draw(sub, "#22c55e", 52, 10, t, t + SEG))
     t += SEG
@@ -167,11 +185,11 @@ def main():
         return 1
 
     with open(os.path.join(out_dir, "caption.txt"), "w") as f:
-        f.write(build_caption(rewards))
+        f.write(build_caption(rewards, breaking))
     with open(os.path.join(out_dir, "comment.txt"), "w") as f:
         f.write(build_comment(rewards))
     with open(os.path.join(out_dir, "youtube.txt"), "w") as f:
-        f.write(build_youtube(rewards))
+        f.write(build_youtube(rewards, breaking))
 
     print(f"OK: reel built -> {out_mp4} ({n} rewards, base={os.path.basename(base)})")
     print("rewards: " + " | ".join(r["name"] for r in rewards))
