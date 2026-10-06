@@ -76,6 +76,7 @@ nav a:hover{color:#fff}
 .hero h1{font-size:1.7rem;line-height:1.25;margin-bottom:10px}
 .trustbar{display:inline-flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--card);border:1px solid #334155;border-radius:12px;padding:10px 16px;font-size:.85rem;color:var(--mut);margin:12px 0}
 .trustbar b{color:var(--acc)}
+.dailystatus{display:block;background:#052e16;border:1px solid var(--acc2);border-radius:12px;padding:10px 16px;font-size:.88rem;color:#bbf7d0;margin:10px auto;max-width:560px}
 .method{font-size:.82rem;color:var(--mut);text-align:center;margin-bottom:6px}
 .method a{color:var(--acc)}
 .intro{margin:6px 0 4px}
@@ -181,10 +182,22 @@ def build():
     live_links = days[0]["links"] if days and days[0].get("links") else []
     n_live = len(live_links)
 
+    # Daily status line (user decision 2026-10-06): honest freshness signal.
+    # New drops today -> celebrate; otherwise say so plainly + re-verified count.
+    today_str = now.strftime("%Y-%m-%d")
+    date_short = now.strftime("%b %-d")
+    new_today = len(days[0].get("links", [])) if days and days[0].get("date") == today_str else 0
+    n_active = sum(1 for d in days for l in d.get("links", []) if l.get("last_status") == "ok")
+    if new_today:
+        status_line = (f"\U0001f381 {new_today} new gift{'s' if new_today > 1 else ''} "
+                       f"added today ({date_short}) \u2014 claim fast, they expire!")
+    else:
+        status_line = (f"\U0001f4c5 {date_short}: No new drops today \u2014 "
+                       f"{n_active} active link{'s' if n_active != 1 else ''} re-verified \u2713 this morning.")
+
     if live_links:
         today_block = "\n".join(link_card(l, now) for l in live_links)
         bucket_date = days[0]["date"]
-        today_str = now.strftime("%Y-%m-%d")
         # Honest label: the bucket is "Today" only when it actually is today.
         day_label = (f"Today — {fmt_date(bucket_date)}" if bucket_date == today_str
                      else f"Still live from {fmt_date(bucket_date)}")
@@ -257,6 +270,7 @@ def build():
 <div class="hero">
 <h1>Match Masters Free Gifts — Today</h1>
 <div class="trustbar">✓ Updated <b>{upd_str}</b> &nbsp;·&nbsp; <b>{n_live}</b> links checked &nbsp;·&nbsp; <b>{n_live}</b> live<br><span style="font-size:.78rem">🔖 Bookmark this page — new verified links land here every morning.</span></div>
+<div class="dailystatus">{esc(status_line)}</div>
 <p class="method">Every link below was checked before publishing. <a href="/methodology/">How we verify →</a></p>
 <p class="method">🎁 <b>What you can get:</b> <a href="/free-coins/">🪙 Coins</a> · <a href="/free-boosters/">🚀 Boosters</a> · 🃏 Stickers · ✨ Perks · 🎡 Spins — each card prints its exact reward. · 🔑 <a href="/reward-keys/">Reward keys (typed codes)</a></p>
 </div>
