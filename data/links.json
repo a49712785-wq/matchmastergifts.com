@@ -2,6 +2,21 @@
   "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
   "days": [
     {
+      "date": "2026-10-08",
+      "links": [
+        {
+          "url": "https://launch.matchmasters.com/l/p/7mSMqimSHKM",
+          "label": "Free Gift",
+          "amount": "",
+          "posted_at": "2026-10-08T14:00",
+          "checked_at": "2026-10-08T16:25",
+          "source": "official X post",
+          "source_url": "https://x.com/match_masters/status/2108119140192199051",
+          "last_status": "ok"
+        }
+      ]
+    },
+    {
       "date": "2026-10-07",
       "links": [
         {
@@ -9,7 +24,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-07T14:35",
-          "checked_at": "2026-10-08T09:15",
+          "checked_at": "2026-10-08T16:25",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -24,7 +39,7 @@
           "label": "Social Solo Event",
           "amount": "",
           "posted_at": "2026-10-04T14:35",
-          "checked_at": "2026-10-08T09:15",
+          "checked_at": "2026-10-08T16:25",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -47,5 +62,5 @@
       ]
     }
   ],
-  "updated": "2026-10-08T09:15"
+  "updated": "2026-10-08T16:25"
 }
