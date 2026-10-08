@@ -185,25 +185,35 @@ def main():
     n = len(rewards)
     filters = []
     t = 0.0
-    # Hook (breaking variant when today's fresh drops are in the reel)
+    # Hook — engagement upgrade 2026-10-08 (user-approved): pattern-interrupt
+    # hooks ROTATE daily so repeat viewers don't tune out; number + urgency
+    # up front (sound-off autoplay — the first 2 seconds decide the swipe).
+    # Plain ASCII only: the drawtext font has no emoji glyphs.
     if breaking:
-        hook = "NEW DROP JUST LANDED!" if n == 1 else "NEW DROPS JUST LANDED!"
-        sub = "fresh gifts \u2014 claim now"
+        hook_variants = [
+            ("JUST DROPPED!", "brand-new gifts \u2014 claim FAST"),
+            ("NEW GIFTS LANDED!", "fresh drop \u2014 be quick!"),
+        ]
     else:
-        hook = "FREE GIFT IS LIVE!" if n == 1 else "FREE GIFTS ARE LIVE!"
-        sub = f"{n} reward{'s' if n > 1 else ''} waiting"
-    filters.append(draw(hook, "white", 88, -140, t, t + SEG))
+        hook_variants = [
+            ("FREE GIFTS ALERT!", f"{n} gift{'s' if n > 1 else ''} waiting for you"),
+            ("WAIT \u2014 FREE GIFTS!", "no catch \u2014 just tap & claim"),
+            (f"{n} FREE GIFT{'S' if n > 1 else ''} TODAY!", "claim before they expire"),
+        ]
+    hook, sub = hook_variants[today.timetuple().tm_yday % len(hook_variants)]
+    filters.append(draw(hook, "white", fontsize_for(hook, 88), -140, t, t + SEG))
     filters.append(draw(sub, "#22c55e", 52, 10, t, t + SEG))
     t += SEG
     # Rewards
     for r in rewards:
         filters.append(draw(r["name"].upper(), "#22c55e",
                             fontsize_for(r["name"].upper()), -100, t, t + SEG))
-        filters.append(draw("FREE - claim now", "white", 52, 60, t, t + SEG))
+        filters.append(draw("FREE \u2014 tap to claim now", "white", 52, 60, t, t + SEG))
         t += SEG
     # CTA
-    filters.append(draw("LINK IN COMMENTS", "#22c55e", 88, -140, t, t + SEG))
-    filters.append(draw("Follow for daily gifts", "white", 52, 10, t, t + SEG))
+    filters.append(draw("LINK IN 1st COMMENT", "#22c55e",
+                        fontsize_for("LINK IN 1st COMMENT", 88), -140, t, t + SEG))
+    filters.append(draw("Follow \u2014 new gifts daily", "white", 52, 10, t, t + SEG))
     t += SEG
 
     total = t
