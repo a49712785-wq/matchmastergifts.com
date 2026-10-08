@@ -95,6 +95,39 @@ def build_caption(rewards, breaking=False):
     return "\n".join(lines)
 
 
+def build_caption_fb(rewards, breaking=False):
+    """Facebook caption — engagement-upgraded 2026-10-08 (user request).
+    FB-only surface: youtube.txt is built separately and intentionally
+    unchanged. Keeps the two-paths policy (site link hero + first-comment
+    direct links) and adds comment-driving question, honest urgency
+    (links really do expire in ~3 days) and a tag-a-friend prompt."""
+    n = len(rewards)
+    if breaking:
+        head = (f"\U0001F195 JUST DROPPED: {n} NEW GIFT{'S' if n > 1 else ''} in "
+                f"Match Masters \u2014 fresh & free, claim FAST! \u23F0")
+    else:
+        head = (f"\U0001F6A8 {n} FREE GIFT{'S' if n > 1 else ''} "
+                f"{'are' if n > 1 else 'is'} LIVE in Match Masters \u2014 "
+                f"claim before they expire! \u23F0")
+    lines = [head, ""]
+    for r in rewards:
+        lines.append(f"\u2705 {r['name']}")
+    lines += [
+        "",
+        "\U0001F4AC Which gift do you want most? Tell us in the comments! \U0001F447",
+        "",
+        f"\U0001F447 2 ways to claim \u2014 pick what's easy:",
+        f"\U0001F310 All links on our site: {SITE_URL}",
+        "\U0001F4AC OR tap the direct gift links in the FIRST COMMENT",
+        "",
+        "\U0001F465 Tag a friend who plays Match Masters!",
+        "Follow for DAILY free gifts, reward keys & codes \u2705",
+        "",
+        HASHTAGS,
+    ]
+    return "\n".join(lines)
+
+
 def build_comment(rewards):
     n = len(rewards)
     lines = [
@@ -107,6 +140,7 @@ def build_comment(rewards):
         "",
         f"\U0001F310 All daily gifts + reward keys: {SITE_URL}",
         "Links checked daily \u2014 claim fast, they expire! \u23F0",
+        "\U0001F4AC Claimed yours? Tell us which gift you got! \U0001F447",
     ]
     return "\n".join(lines)
 
@@ -185,7 +219,7 @@ def main():
         return 1
 
     with open(os.path.join(out_dir, "caption.txt"), "w") as f:
-        f.write(build_caption(rewards, breaking))
+        f.write(build_caption_fb(rewards, breaking))
     with open(os.path.join(out_dir, "comment.txt"), "w") as f:
         f.write(build_comment(rewards))
     with open(os.path.join(out_dir, "youtube.txt"), "w") as f:
