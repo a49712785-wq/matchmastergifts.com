@@ -47,13 +47,35 @@ def fontsize_for(text: str, base: int = 96) -> int:
     return 48
 
 
+def _is_live(posted_at, now):
+    """Mirror build.py's expiry_note: a gift link is live only inside the
+    ~3-day window from its posted_at (stored PKT-naive). Unparseable
+    timestamps stay live, matching build.py's ('ok', '') fallback."""
+    try:
+        dt = datetime.datetime.fromisoformat(posted_at)
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=datetime.timezone(datetime.timedelta(hours=5)))
+        return (now - dt) < datetime.timedelta(days=3)
+    except (ValueError, TypeError):
+        return True
+
+
 def active_links():
     with open(LINKS_JSON) as f:
         data = json.load(f)
+    now = datetime.datetime.now(ZoneInfo("Asia/Karachi"))
     out = []
     for day in data.get("days", []):
         for l in day.get("links", []):
-            if l.get("last_status") == "ok":
+            # Honesty fix (2026-10-08): last_status=ok only means the URL
+            # still resolves at its last recheck — it does NOT mean the
+            # link is still claimable. build.py treats links past the
+            # 3-day window as EXPIRED (shown 'for transparency only'),
+            # but this function counted them anyway: the 2026-10-08 reel
+            # and Short advertised '3 FREE GIFTS LIVE' (incl. a link
+            # posted 2026-09-27) while the site itself counted 1 live
+            # link. Filter by the same 3-day window as build.py.
+            if l.get("last_status") == "ok" and _is_live(l.get("posted_at", ""), now):
                 name = (l.get("amount") or "").strip() or (l.get("label") or "").strip()
                 url = (l.get("url") or "").strip()
                 if name and url and not any(x["name"] == name for x in out):
