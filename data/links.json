@@ -2,6 +2,31 @@
   "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
   "days": [
     {
+      "date": "2026-10-10",
+      "links": [
+        {
+          "url": "https://launch.matchmasters.com/l/p/3xmSy73i3UA",
+          "label": "Free Diamond Booster",
+          "amount": "",
+          "posted_at": "2026-10-08T17:09",
+          "checked_at": "2026-10-10T03:41",
+          "source": "official WhatsApp channel",
+          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+          "last_status": "ok"
+        },
+        {
+          "url": "https://launch.matchmasters.com/l/p/rSxPgFc6lZw",
+          "label": "Free Gift",
+          "amount": "",
+          "posted_at": "2026-10-09T22:55",
+          "checked_at": "2026-10-10T03:41",
+          "source": "official WhatsApp channel",
+          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+          "last_status": "ok"
+        }
+      ]
+    },
+    {
       "date": "2026-10-08",
       "links": [
         {
@@ -9,7 +34,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-08T14:00",
-          "checked_at": "2026-10-09T13:12",
+          "checked_at": "2026-10-10T03:41",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2108119140192199051",
           "last_status": "ok"
@@ -24,7 +49,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-07T14:35",
-          "checked_at": "2026-10-09T13:12",
+          "checked_at": "2026-10-10T03:41",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -39,28 +64,13 @@
           "label": "Social Solo Event",
           "amount": "",
           "posted_at": "2026-10-04T14:35",
-          "checked_at": "2026-10-09T13:12",
+          "checked_at": "2026-10-10T03:41",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
         }
       ]
-    },
-    {
-      "date": "2026-09-28",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/jg7FBjeVd64",
-          "label": "Free Boosters",
-          "amount": "3 SE Boosters",
-          "posted_at": "2026-09-27T14:15",
-          "checked_at": "2026-10-04T23:35",
-          "source": "official Facebook post",
-          "source_url": "https://www.facebook.com/matchmastersgame/posts/pfbid02jZzUgTkXxtBtzQkWcAaxrvthmCmHTx4SbHhCbdrUGt9fWsBLZJEP25guejntXDE7l",
-          "last_status": "ok"
-        }
-      ]
     }
   ],
-  "updated": "2026-10-09T13:12"
+  "updated": "2026-10-10T03:41"
 }
