@@ -179,7 +179,14 @@ def build():
     except Exception:
         upd_str = esc(updated)
 
-    live_links = days[0]["links"] if days and days[0].get("links") else []
+    # Live = inside the ~3-day window (expiry_note), not merely present in
+    # the newest bucket. Before this guard, once the newest bucket aged past
+    # 3 days with no new drop, the header still printed "1 LIVE", the status
+    # line counted expired links as active, and the pillar pages kept
+    # injecting the dead link as "today's verified" — while make_reel.py
+    # (patched 2026-10-09) correctly returned 0 and skipped the reel/Short.
+    live_links = [l for l in (days[0]["links"] if days and days[0].get("links") else [])
+                  if expiry_note(l.get("posted_at", ""), now)[0] != "expired"]
     n_live = len(live_links)
 
     # Daily status line (user decision 2026-10-06): honest freshness signal.
@@ -192,13 +199,17 @@ def build():
     # the expired Sep 28 link, printing "2 active links re-verified").
     n_reverified = sum(1 for d in days for l in d.get("links", [])
                        if (l.get("checked_at") or "").startswith(today_str)
-                       and l.get("last_status") == "ok")
+                       and l.get("last_status") == "ok"
+                       and expiry_note(l.get("posted_at", ""), now)[0] != "expired")
     if new_today:
         status_line = (f"\U0001f381 {new_today} new gift{'s' if new_today > 1 else ''} "
                        f"added today ({date_short}) \u2014 claim fast, they expire!")
-    else:
+    elif n_reverified:
         status_line = (f"\U0001f4c5 {date_short}: No new drops today \u2014 "
                        f"{n_reverified} active link{'s' if n_reverified != 1 else ''} re-verified \u2713 this morning.")
+    else:
+        status_line = (f"\U0001f4c5 {date_short}: No new drops today \u2014 "
+                       f"the last batch has expired. Check back after the next official post.")
 
     if live_links:
         today_block = "\n".join(link_card(l, now) for l in live_links)
@@ -215,10 +226,23 @@ def build():
     prev_blocks = ""
     for d in days[1:3]:
         cards = "\n".join(link_card(l, now) for l in d.get("links", []))
+        # Honest bucket badge: EXPIRED only when EVERY link in the bucket is
+        # past the 3-day window (per expiry_note). A bucket still inside the
+        # window is STILL LIVE — its cards carry live countdowns and
+        # make_reel.py treats last_status=ok links as active, so a blanket
+        # EXPIRED header contradicted the site's own cards and reels.
+        link_states = [expiry_note(l.get("posted_at", ""), now)[0] for l in d.get("links", [])]
+        all_expired = bool(link_states) and all(st == "expired" for st in link_states)
+        if all_expired:
+            badge = '<span class="exp">EXPIRED</span>'
+            note = "These links are past the 3-day window and no longer work. Shown for transparency only."
+        else:
+            badge = '<span class="live">STILL LIVE</span>'
+            note = "Still inside the 3-day window \u2014 each card shows its own countdown. If you have not claimed one yet, it can still work."
         prev_blocks += f"""
-<details><summary>{fmt_date(d['date'])} — {len(d.get('links',[]))} links <span class="exp">EXPIRED</span></summary>
+<details><summary>{fmt_date(d['date'])} — {len(d.get('links',[]))} links {badge}</summary>
 <div class="links">{cards}</div>
-<p style="font-size:.8rem;color:var(--mut)">These links are past the 3-day window and no longer work. Shown for transparency only.</p>
+<p style="font-size:.8rem;color:var(--mut)">{note}</p>
 </details>"""
 
     faq_html = "\n".join(
@@ -322,7 +346,8 @@ def inject_block(html, marker, block):
 
 def inject_guides(now, days):
     """Push today's filtered live links + fresh date into the coins/boosters pillar pages."""
-    live = days[0]["links"] if days and days[0].get("links") else []
+    live = [l for l in (days[0]["links"] if days and days[0].get("links") else [])
+            if expiry_note(l.get("posted_at", ""), now)[0] != "expired"]
     def is_coin(l):
         return "coin" in l.get("label", "").lower()
     def is_booster(l):
