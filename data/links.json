@@ -9,7 +9,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-08T14:00",
-          "checked_at": "2026-10-08T16:25",
+          "checked_at": "2026-10-09T13:12",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2108119140192199051",
           "last_status": "ok"
@@ -24,7 +24,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-07T14:35",
-          "checked_at": "2026-10-08T16:25",
+          "checked_at": "2026-10-09T13:12",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -39,7 +39,7 @@
           "label": "Social Solo Event",
           "amount": "",
           "posted_at": "2026-10-04T14:35",
-          "checked_at": "2026-10-08T16:25",
+          "checked_at": "2026-10-09T13:12",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -62,5 +62,5 @@
       ]
     }
   ],
-  "updated": "2026-10-08T16:25"
+  "updated": "2026-10-09T13:12"
 }
