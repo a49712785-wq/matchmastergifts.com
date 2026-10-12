@@ -9,7 +9,7 @@
           "label": "Free Tokens",
           "amount": "",
           "posted_at": "2026-10-11T21:00",
-          "checked_at": "2026-10-12T14:04",
+          "checked_at": "2026-10-12T18:43",
           "source": "official WhatsApp channel",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -19,9 +19,19 @@
           "label": "Star Race Event",
           "amount": "",
           "posted_at": "2026-10-11T14:38",
-          "checked_at": "2026-10-12T14:04",
+          "checked_at": "2026-10-12T18:43",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
+          "last_status": "ok"
+        },
+        {
+          "url": "https://launch.matchmasters.com/l/p/uJIWUZxmLls",
+          "label": "Free Sticker",
+          "amount": "",
+          "posted_at": "2026-10-12T18:40",
+          "checked_at": "2026-10-12T18:43",
+          "source": "official WhatsApp channel",
+          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
         }
       ]
@@ -34,7 +44,7 @@
           "label": "Free Stickers",
           "amount": "",
           "posted_at": "2026-10-10T14:58",
-          "checked_at": "2026-10-12T14:04",
+          "checked_at": "2026-10-12T18:43",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2108859583934685549",
           "last_status": "ok"
@@ -49,7 +59,7 @@
           "label": "Free Diamond Booster",
           "amount": "",
           "posted_at": "2026-10-08T17:09",
-          "checked_at": "2026-10-12T14:04",
+          "checked_at": "2026-10-12T18:43",
           "source": "official WhatsApp channel",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -59,7 +69,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-09T22:55",
-          "checked_at": "2026-10-12T14:04",
+          "checked_at": "2026-10-12T18:43",
           "source": "official WhatsApp channel",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -74,7 +84,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-08T14:00",
-          "checked_at": "2026-10-12T14:04",
+          "checked_at": "2026-10-12T18:43",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2108119140192199051",
           "last_status": "ok"
@@ -82,5 +92,5 @@
       ]
     }
   ],
-  "updated": "2026-10-12T14:04"
+  "updated": "2026-10-12T18:43"
 }
