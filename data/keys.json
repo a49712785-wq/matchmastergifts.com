@@ -1,6 +1,16 @@
 {
   "keys": [
     {
+      "key": "SPOOKY",
+      "reward": "",
+      "source": "official X post",
+      "source_url": "https://x.com/match_masters/status/2109569702603489461",
+      "posted_at": "2026-10-12T13:59",
+      "spotted_at": "2026-10-12T14:04",
+      "status": "active",
+      "notes": "This week's Reward Key hidden in the official X post image (word written in the cauldron); post says claim your rewards — reward amount not stated in post"
+    },
+    {
       "key": "MANOR10",
       "reward": "10% OFF at the official store",
       "source": "official WhatsApp channel",
@@ -11,5 +21,5 @@
       "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
     }
   ],
-  "updated": "2026-10-12T12:53"
+  "updated": "2026-10-12T14:04"
 }
