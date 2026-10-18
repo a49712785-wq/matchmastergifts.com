@@ -9,7 +9,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-18T09:47",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2111676029199139043",
           "last_status": "ok"
@@ -24,7 +24,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-17T16:00",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official WhatsApp channel",
           "source_url": "",
           "last_status": "ok"
@@ -34,7 +34,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-17T16:44",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2111422974960058541",
           "last_status": "ok"
@@ -49,7 +49,7 @@
           "label": "Free Emote",
           "amount": "",
           "posted_at": "2026-10-15T15:34",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2110680743089475934",
           "last_status": "ok"
@@ -59,7 +59,7 @@
           "label": "Free Booster",
           "amount": "",
           "posted_at": "2026-10-15T13:02",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official WhatsApp channel",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -74,7 +74,7 @@
           "label": "Free Tokens",
           "amount": "",
           "posted_at": "2026-10-11T21:00",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official WhatsApp channel",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -84,7 +84,7 @@
           "label": "Star Race Event",
           "amount": "",
           "posted_at": "2026-10-11T14:38",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -94,7 +94,7 @@
           "label": "Free Sticker",
           "amount": "",
           "posted_at": "2026-10-12T18:40",
-          "checked_at": "2026-10-18T14:03",
+          "checked_at": "2026-10-18T23:06",
           "source": "official WhatsApp channel",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -102,5 +102,5 @@
       ]
     }
   ],
-  "updated": "2026-10-18T14:03"
+  "updated": "2026-10-18T23:06"
 }
