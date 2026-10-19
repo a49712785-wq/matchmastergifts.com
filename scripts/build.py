@@ -77,6 +77,13 @@ nav a:hover{color:#fff}
 .trustbar{display:inline-flex;flex-wrap:wrap;gap:8px;justify-content:center;background:var(--card);border:1px solid #334155;border-radius:12px;padding:10px 16px;font-size:.85rem;color:var(--mut);margin:12px 0}
 .trustbar b{color:var(--acc)}
 .dailystatus{display:block;background:#052e16;border:1px solid var(--acc2);border-radius:12px;padding:10px 16px;font-size:.88rem;color:#bbf7d0;margin:10px auto;max-width:560px}
+.pill.date{color:#e2e8f0;border-color:#475569;font-weight:700}
+.pill.newb{background:var(--acc);color:#052e16;border-color:var(--acc);font-weight:800}
+.logbox{background:var(--card);border:1px solid #334155;border-radius:14px;padding:16px 18px;margin:22px 0}
+.logbox h2{font-size:1.1rem;margin-bottom:8px}
+.logline{font-size:.9rem;color:#cbd5e1;padding:6px 0;border-bottom:1px dashed #334155}
+.logline:last-of-type{border-bottom:none}
+.logline b{color:#fff}
 .method{font-size:.82rem;color:var(--mut);text-align:center;margin-bottom:6px}
 .method a{color:var(--acc)}
 .intro{margin:6px 0 4px}
@@ -149,7 +156,21 @@ HOWTO = [
     "Done. Come back tomorrow \u2014 new links are checked and published every morning.",
 ]
 
-def link_card(l, now):
+def date_chip(l, now):
+    """Dated chip for a live card (owner spec 2026-10-20): every live box
+    must say WHICH day its link dropped — 'Today' for today's, the date +
+    'still active' for older links that are still inside the window."""
+    try:
+        pd = _as_pkt(datetime.fromisoformat(l.get("posted_at", ""))).strftime("%Y-%m-%d")
+    except (ValueError, TypeError):
+        return ""
+    label = fmt_date(pd)
+    if pd == now.strftime("%Y-%m-%d"):
+        return ('<span class="pill newb">NEW</span>'
+                f'<span class="pill date">📅 Today — {esc(label)}</span>')
+    return f'<span class="pill date">📅 {esc(label)} · still active</span>'
+
+def link_card(l, now, chip=""):
     cls, exp = expiry_note(l.get("posted_at", ""), now)
     checked = rel_hours(l.get("checked_at", ""), now)
     return f"""
@@ -160,6 +181,7 @@ def link_card(l, now):
     <div style="font-size:1.6rem">🎁</div>
   </div>
   <div class="meta">
+    {chip}
     <span class="pill ok">✓ checked {esc(checked)}</span>
     <span class="pill {cls}">{esc(exp)}</span>
     <span class="pill">src: {esc(l.get('source','official post'))}</span>
@@ -185,8 +207,14 @@ def build():
     # line counted expired links as active, and the pillar pages kept
     # injecting the dead link as "today's verified" — while make_reel.py
     # (patched 2026-10-09) correctly returned 0 and skipped the reel/Short.
-    live_links = [l for l in (days[0]["links"] if days and days[0].get("links") else [])
-                  if expiry_note(l.get("posted_at", ""), now)[0] != "expired"]
+    # 2026-10-20 (owner catch): live links come from ALL buckets, newest
+    # first — still-live links from previous days were previously buried in
+    # the collapsed per-day <details> below the fold, invisible on mobile.
+    all_links = [l for d in days for l in d.get("links", [])]
+    live_links = sorted(
+        (l for l in all_links
+         if expiry_note(l.get("posted_at", ""), now)[0] != "expired"),
+        key=lambda l: l.get("posted_at", ""), reverse=True)
     n_live = len(live_links)
 
     # Daily status line (user decision 2026-10-06): honest freshness signal.
@@ -212,38 +240,77 @@ def build():
                        f"the last batch has expired. Check back after the next official post.")
 
     if live_links:
-        today_block = "\n".join(link_card(l, now) for l in live_links)
-        bucket_date = days[0]["date"]
-        # Honest label: the bucket is "Today" only when it actually is today.
-        day_label = (f"Today — {fmt_date(bucket_date)}" if bucket_date == today_str
-                     else f"Still live from {fmt_date(bucket_date)}")
-        today_head = f'<div class="dayhead"><h2>{day_label}</h2><span class="live">{n_live} LIVE</span></div>'
+        today_block = "\n".join(link_card(l, now, date_chip(l, now)) for l in live_links)
+        today_head = ('<div class="dayhead"><h2>🟢 Live Now — every active gift</h2>'
+                      f'<span class="live">{n_live} LIVE</span></div>')
     else:
         today_head = ""
         today_block = """<div class="empty">Today's links are being checked right now.<br>
         New verified links appear here every morning. Check back soon.</div>"""
 
+    # History below the fold = EXPIRED links only (transparency). Live links
+    # from every bucket already appear as full boxes in "Live Now" above —
+    # previously a still-live older link showed ONLY here, inside a collapsed
+    # <details>, while its bucket header claimed STILL LIVE (owner catch
+    # 2026-10-20).
     prev_blocks = ""
-    for d in days[1:3]:
-        cards = "\n".join(link_card(l, now) for l in d.get("links", []))
-        # Honest bucket badge: EXPIRED only when EVERY link in the bucket is
-        # past the 3-day window (per expiry_note). A bucket still inside the
-        # window is STILL LIVE — its cards carry live countdowns and
-        # make_reel.py treats last_status=ok links as active, so a blanket
-        # EXPIRED header contradicted the site's own cards and reels.
-        link_states = [expiry_note(l.get("posted_at", ""), now)[0] for l in d.get("links", [])]
-        all_expired = bool(link_states) and all(st == "expired" for st in link_states)
-        if all_expired:
-            badge = '<span class="exp">EXPIRED</span>'
-            note = "These links are past the 3-day window and no longer work. Shown for transparency only."
-        else:
-            badge = '<span class="live">STILL LIVE</span>'
-            note = "Still inside the 3-day window \u2014 each card shows its own countdown. If you have not claimed one yet, it can still work."
+    for d in days:
+        expired_links = [l for l in d.get("links", [])
+                         if expiry_note(l.get("posted_at", ""), now)[0] == "expired"]
+        if not expired_links:
+            continue
+        cards = "\n".join(link_card(l, now) for l in expired_links)
+        badge = '<span class="exp">EXPIRED</span>'
+        note = "These links are past the 3-day window and no longer work. Shown for transparency only."
         prev_blocks += f"""
-<details><summary>{fmt_date(d['date'])} — {len(d.get('links',[]))} links {badge}</summary>
+<details><summary>{fmt_date(d['date'])} — {len(expired_links)} expired link{'s' if len(expired_links) != 1 else ''} {badge}</summary>
 <div class="links">{cards}</div>
 <p style="font-size:.8rem;color:var(--mut)">{note}</p>
 </details>"""
+
+    # Daily Gift Log (owner suggestion 2026-10-20): a visible dated record —
+    # drop days AND quiet days — so readers and AI assistants can see the
+    # official sources are checked every single day. Auto-maintained in
+    # data/status-log.json: each build upserts today's entry from real data.
+    # Past drop-days provable from links.json buckets are seeded; past
+    # zero-days are NEVER invented — the log simply accumulates from today.
+    log_path = ROOT / "data" / "status-log.json"
+    try:
+        slog = json.loads(log_path.read_text())
+    except Exception:
+        slog = {"entries": []}
+    entries = {e["date"]: e for e in slog.get("entries", []) if e.get("date")}
+    # Seed by each link's own posted date (bucket dates are collection days
+    # and can lag the real drop day by one).
+    drop_days = {}
+    for l in all_links:
+        pd = (l.get("posted_at", "") or "")[:10]
+        if pd:
+            drop_days[pd] = drop_days.get(pd, 0) + 1
+    for pd, cnt in drop_days.items():
+        if pd not in entries:
+            entries[pd] = {"date": pd, "new": cnt}
+    entries[today_str] = {"date": today_str, "new": new_today, "live": n_live}
+    ordered = [entries[k] for k in sorted(entries, reverse=True)][:30]
+    log_path.write_text(json.dumps({"entries": ordered}, indent=1))
+    log_lines = ""
+    for e in ordered[:7]:
+        ds = fmt_date(e["date"])
+        plural = "s" if e.get("new") != 1 else ""
+        if e.get("new"):
+            tail = (f" · {e['live']} link{'s' if e.get('live') != 1 else ''} live"
+                    if "live" in e else "")
+            log_lines += (f'<div class="logline"><b>{esc(ds)}</b> — 🎁 '
+                          f'{e["new"]} new gift{plural} dropped{tail}</div>')
+        else:
+            tail = (f" · {e['live']} link{'s' if e.get('live') != 1 else ''} still live (checked today)"
+                    if "live" in e else "")
+            log_lines += (f'<div class="logline"><b>{esc(ds)}</b> — '
+                          f'No new official drop today{tail}</div>')
+    log_block = ('<section class="logbox"><h2>📅 Daily Gift Log</h2>' + log_lines +
+                 '<p style="font-size:.8rem;color:var(--mut);margin-top:8px">We check the '
+                 'official Match Masters posts every day — drop days and quiet days are '
+                 'both recorded here.</p></section>')
 
     faq_html = "\n".join(
         f"<details><summary>{esc(q)}</summary><p>{esc(a)}</p></details>" for q, a in FAQ)
@@ -307,10 +374,11 @@ def build():
 <div class="links">{today_block}</div>
 <div class="claim"><h3>How to claim (30 seconds)</h3><ol>{howto_html}</ol></div>
 <div class="warn">⚠️ <b>Links do not work on desktop.</b> Open them on the same phone or tablet where Match Masters is installed, with your Facebook account connected to the game \u2014 otherwise you will land on a Facebook error page.</div>
+{log_block}
 <section class="intro"><h2>What are Match Masters free gifts?</h2>
 <p>Match Masters free gifts are reward links the game maker publishes on its official Facebook page and WhatsApp channel — most days. Each link gives you something free in-game: coins, boosters, stickers, perks, or spins. Tap one on the phone or tablet where Match Masters is installed and the reward lands in your account.</p>
-<p>The catch: every link expires about 3 days after it is issued, and each can be claimed only once per account. That is why this page exists — we check the official posts every morning, verify each link, and publish only the ones that pass, stamped with the exact time they were checked. Dead links are removed automatically, so what you see here is always today's live batch.</p></section>
-<h2 class="sec">Previous days</h2>
+<p>The catch: every link expires about 3 days after it is issued, and each can be claimed only once per account. That is why this page exists — we check the official posts every morning, verify each link, and publish only the ones that pass, stamped with the exact time they were checked. Dead links are removed automatically, so what you see here is always the live batch — newest drops first, every card stamped with its day and check time.</p></section>
+<h2 class="sec">Previous days — expired links</h2>
 {prev_blocks if prev_blocks else '<p style="color:var(--mut);font-size:.9rem">Archive builds up as we publish daily.</p>'}
 <section style="margin-top:34px"><h2>\U0001f4da Match Masters guides</h2>
 <div style="display:grid;gap:10px;margin-top:12px">
@@ -345,9 +413,14 @@ def inject_block(html, marker, block):
     return pat.sub(new, html, count=1)
 
 def inject_guides(now, days):
-    """Push today's filtered live links + fresh date into the coins/boosters pillar pages."""
-    live = [l for l in (days[0]["links"] if days and days[0].get("links") else [])
-            if expiry_note(l.get("posted_at", ""), now)[0] != "expired"]
+    """Push the filtered live links + fresh date into the coins/boosters pillar pages."""
+    # All buckets, newest first (2026-10-20): still-live links from previous
+    # days surface here too, each card carrying its date chip — previously
+    # only the newest bucket's links were injected.
+    live = sorted(
+        (l for d in days for l in d.get("links", [])
+         if expiry_note(l.get("posted_at", ""), now)[0] != "expired"),
+        key=lambda l: l.get("posted_at", ""), reverse=True)
     def is_coin(l):
         return "coin" in l.get("label", "").lower()
     def is_booster(l):
@@ -370,17 +443,24 @@ def inject_guides(now, days):
         cards = [l for l in live if filt(l)]
         all_mixed = bool(cards) and all(unclassified(l) for l in cards)
         if cards:
-            heading = ("\U0001f381 Today\u2019s verified free gift links"
-                       if all_mixed else
-                       "\U0001f381 Today\u2019s verified free " + noun + " links")
+            today_str = now.strftime("%Y-%m-%d")
+            all_today = all((l.get("posted_at", "") or "")[:10] == today_str for l in cards)
+            if all_mixed:
+                heading = ("\U0001f381 Today\u2019s verified free gift links"
+                           if all_today else
+                           "\U0001f7e2 Live now \u2014 verified free gift links (checked today)")
+            else:
+                heading = ("\U0001f381 Today\u2019s verified free " + noun + " links"
+                           if all_today else
+                           "\U0001f7e2 Live now \u2014 verified free " + noun + " links (checked today)")
             block = ('<div class="livewrap"><h3>' + heading +
                      '</h3><div class="links">' +
-                     "\n".join(link_card(l, now) for l in cards) +
+                     "\n".join(link_card(l, now, date_chip(l, now)) for l in cards) +
                      '</div><p class="srcnote">Checked before publishing. <a href="/methodology/">How we verify \u2192</a></p></div>')
         else:
             block = ('<div class="livewrap"><h3>\U0001f381 Today\u2019s verified free ' + noun +
-                     ' links</h3><p class="emptysm">No ' + noun +
-                     ' links in today\u2019s batch — see <a href="/">today\u2019s full gift list</a>.</p></div>')
+                     ' links</h3><p class="emptysm">No live ' + noun +
+                     ' links right now — see <a href="/">today\u2019s full gift list</a>.</p></div>')
         html = inject_block(html, marker, block)
         html = inject_block(html, "GUIDE-UPDATED",
                             f"Last updated: {fmt_date(now.strftime('%Y-%m-%d'))} — links refresh every morning.")
