@@ -9,7 +9,7 @@
           "label": "Free Coins",
           "amount": "",
           "posted_at": "2026-10-20T19:43",
-          "checked_at": "2026-10-20T19:43",
+          "checked_at": "2026-10-21T09:36",
           "source": "official WhatsApp channel post",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -24,7 +24,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-19T17:42",
-          "checked_at": "2026-10-20T19:43",
+          "checked_at": "2026-10-21T09:36",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2112162404058468645",
           "last_status": "ok"
@@ -39,7 +39,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-18T09:47",
-          "checked_at": "2026-10-20T19:43",
+          "checked_at": "2026-10-21T09:36",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2111676029199139043",
           "last_status": "ok"
@@ -54,7 +54,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-17T16:00",
-          "checked_at": "2026-10-20T19:43",
+          "checked_at": "2026-10-21T09:36",
           "source": "official WhatsApp channel",
           "source_url": "",
           "last_status": "ok"
@@ -64,7 +64,7 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-17T16:44",
-          "checked_at": "2026-10-20T19:43",
+          "checked_at": "2026-10-21T09:36",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2111422974960058541",
           "last_status": "ok"
@@ -72,5 +72,5 @@
       ]
     }
   ],
-  "updated": "2026-10-20T19:43"
+  "updated": "2026-10-21T09:36"
 }
