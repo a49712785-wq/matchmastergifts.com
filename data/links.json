@@ -2,6 +2,21 @@
   "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
   "days": [
     {
+      "date": "2026-10-24",
+      "links": [
+        {
+          "url": "https://launch.matchmasters.com/l/p/WxCZPfeOpr4",
+          "label": "Free Perks",
+          "amount": "",
+          "posted_at": "2026-10-23T12:00",
+          "checked_at": "2026-10-24T16:34",
+          "source": "official WhatsApp channel post",
+          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+          "last_status": "ok"
+        }
+      ]
+    },
+    {
       "date": "2026-10-22",
       "links": [
         {
@@ -9,7 +24,7 @@
           "label": "Free Diamond Booster",
           "amount": "",
           "posted_at": "2026-10-22T15:58",
-          "checked_at": "2026-10-24T09:16",
+          "checked_at": "2026-10-24T16:34",
           "source": "official WhatsApp channel post",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -19,7 +34,7 @@
           "label": "Free Coins",
           "amount": "",
           "posted_at": "2026-10-22T16:28",
-          "checked_at": "2026-10-24T09:16",
+          "checked_at": "2026-10-24T16:34",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2113231118807757056",
           "last_status": "ok"
@@ -34,7 +49,7 @@
           "label": "Free Coins",
           "amount": "",
           "posted_at": "2026-10-20T19:43",
-          "checked_at": "2026-10-24T09:16",
+          "checked_at": "2026-10-24T16:34",
           "source": "official WhatsApp channel post",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -49,28 +64,13 @@
           "label": "Free Gift",
           "amount": "",
           "posted_at": "2026-10-19T17:42",
-          "checked_at": "2026-10-24T09:16",
+          "checked_at": "2026-10-24T16:34",
           "source": "official X post",
           "source_url": "https://x.com/match_masters/status/2112162404058468645",
           "last_status": "ok"
         }
       ]
-    },
-    {
-      "date": "2026-10-18",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/hqt3g6QuoW0",
-          "label": "Free Gift",
-          "amount": "",
-          "posted_at": "2026-10-18T09:47",
-          "checked_at": "2026-10-24T09:16",
-          "source": "official X post",
-          "source_url": "https://x.com/match_masters/status/2111676029199139043",
-          "last_status": "ok"
-        }
-      ]
     }
   ],
-  "updated": "2026-10-24T09:16"
+  "updated": "2026-10-24T16:34"
 }
