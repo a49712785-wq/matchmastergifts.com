@@ -2,6 +2,21 @@
   "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
   "days": [
     {
+      "date": "2026-10-29",
+      "links": [
+        {
+          "url": "https://launch.matchmasters.com/l/p/HxsVcHNb_Qs",
+          "label": "Free Booster",
+          "amount": "",
+          "posted_at": "2026-10-29T13:48",
+          "checked_at": "2026-10-29T14:08",
+          "source": "official WhatsApp channel post",
+          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+          "last_status": "ok"
+        }
+      ]
+    },
+    {
       "date": "2026-10-27",
       "links": [
         {
@@ -9,7 +24,7 @@
           "label": "Free Halloween Treat",
           "amount": "",
           "posted_at": "2026-10-27T12:00",
-          "checked_at": "2026-10-29T09:18",
+          "checked_at": "2026-10-29T14:08",
           "source": "official WhatsApp channel post",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -24,7 +39,7 @@
           "label": "Free Coins",
           "amount": "",
           "posted_at": "2026-10-25T15:30",
-          "checked_at": "2026-10-29T09:18",
+          "checked_at": "2026-10-29T14:08",
           "source": "official Facebook post",
           "source_url": "https://www.facebook.com/MatchMastersGame",
           "last_status": "ok"
@@ -39,7 +54,7 @@
           "label": "Free Perks",
           "amount": "",
           "posted_at": "2026-10-23T12:00",
-          "checked_at": "2026-10-29T09:18",
+          "checked_at": "2026-10-29T14:08",
           "source": "official WhatsApp channel post",
           "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
           "last_status": "ok"
@@ -49,7 +64,7 @@
           "label": "Free Sticker",
           "amount": "",
           "posted_at": "2026-10-24T17:58",
-          "checked_at": "2026-10-29T09:18",
+          "checked_at": "2026-10-29T14:08",
           "source": "official X post",
           "source_url": "https://x.com/match_masters",
           "last_status": "ok"
@@ -57,5 +72,5 @@
       ]
     }
   ],
-  "updated": "2026-10-29T09:19"
+  "updated": "2026-10-29T14:08"
 }
