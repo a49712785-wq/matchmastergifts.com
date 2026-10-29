@@ -1,6 +1,16 @@
 {
   "keys": [
     {
+      "key": "HappyBoonana",
+      "reward": "Free Coins",
+      "source": "gift trackers (rewavio, allloot, buspins)",
+      "source_url": "https://rewavio.com/blog/match-masters",
+      "posted_at": "2026-10-28T12:00",
+      "spotted_at": "2026-10-29T21:34",
+      "status": "active",
+      "notes": "Corroborated key: listed by rewavio + allloot + buspins (checked Oct 29 evening); buspins still shows it active (Limited-Time) while 3 sibling keys from the same drop are already marked Expired there — keys can cap out without notice"
+    },
+    {
       "key": "SPOOKY",
       "reward": "",
       "source": "official X post",
@@ -21,5 +31,5 @@
       "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
     }
   ],
-  "updated": "2026-10-29T09:19"
+  "updated": "2026-10-29T21:34"
 }

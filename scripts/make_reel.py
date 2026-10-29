@@ -78,7 +78,11 @@ def active_links():
             if l.get("last_status") == "ok" and _is_live(l.get("posted_at", ""), now):
                 name = (l.get("amount") or "").strip() or (l.get("label") or "").strip()
                 url = (l.get("url") or "").strip()
-                if name and url and not any(x["name"] == name for x in out):
+                # Dedupe by URL, not by name (fix 2026-10-29): the same reward
+                # type can drop twice in one day (e.g. two Free Boosters on
+                # 2026-10-29), and name-dedupe silently dropped the second
+                # link from the reel/comment. Same URL twice stays deduped.
+                if name and url and not any(x["url"] == url for x in out):
                     out.append({"name": name, "url": url, "date": day.get("date", "")})
             if len(out) >= MAX_REWARDS:
                 break
