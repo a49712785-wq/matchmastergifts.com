@@ -828,3 +828,29 @@ def build_sitemap(booster_slugs):
 
 if __name__ == "__main__":
     build()
+
+
+# ---------- Adsterra banner test (owner-approved 2026-10-30) ----------
+# ONE 320x50 banner, below content / above footer, on every page.
+# Final-pass injection (after build()) so template edits never wipe it.
+# Delete this block to end the test.
+ADSTERRA_BLOCK = """
+<div style="text-align:center;margin:26px auto 2px;">
+<script>
+  atOptions = {
+    'key' : '1b8c2735c672162e9806a395eebda086',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/1b8c2735c672162e9806a395eebda086"></script>
+</div>
+"""
+if __name__ == "__main__":
+    for _p in [ROOT / "index.html", *sorted(ROOT.glob("*/index.html"))]:
+        _h = _p.read_text()
+        if "1b8c2735c672162e9806a395eebda086" not in _h and "<footer" in _h:
+            _p.write_text(_h.replace("<footer", ADSTERRA_BLOCK + "<footer", 1))
+    print("adsterra banner injected")
