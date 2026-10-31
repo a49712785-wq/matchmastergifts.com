@@ -1,156 +1,156 @@
 {
-  "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
-  "days": [
+ "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
+ "days": [
+  {
+   "date": "2026-10-31",
+   "links": [
     {
-      "date": "2026-10-31",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/xkVLCDlr_yw",
-          "label": "Free Sticker",
-          "amount": "",
-          "posted_at": "2026-10-31T13:35",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official X post",
-          "source_url": "https://x.com/match_masters",
-          "last_status": "ok"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-30",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/b4TO-aqLLC0",
-          "label": "Free Perks",
-          "amount": "",
-          "posted_at": "2026-10-30T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official WhatsApp channel post",
-          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/c2DkJ0YsZJs",
-          "label": "Free Coins",
-          "amount": "",
-          "posted_at": "2026-10-30T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/c2DkJ0YsZJs",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/P2YZgk456XU",
-          "label": "Free Tokens",
-          "amount": "",
-          "posted_at": "2026-10-30T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/P2YZgk456XU",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/hYKBy2jll8o",
-          "label": "Free Booster",
-          "amount": "",
-          "posted_at": "2026-10-30T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/hYKBy2jll8o",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/kIFLaOIhp4w",
-          "label": "Free Booster",
-          "amount": "",
-          "posted_at": "2026-10-30T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/kIFLaOIhp4w",
-          "last_status": "ok"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-29",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/HxsVcHNb_Qs",
-          "label": "Free Booster",
-          "amount": "",
-          "posted_at": "2026-10-29T13:48",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official WhatsApp channel post",
-          "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/nxrCCQv0T-E",
-          "label": "Free Booster",
-          "amount": "",
-          "posted_at": "2026-10-29T18:56",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official X post",
-          "source_url": "https://x.com/match_masters",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/qWxKaTv6fYE",
-          "label": "Free Coins",
-          "amount": "",
-          "posted_at": "2026-10-29T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/qWxKaTv6fYE",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/_X5Hk62zw4Y",
-          "label": "Free Coins",
-          "amount": "",
-          "posted_at": "2026-10-29T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/_X5Hk62zw4Y",
-          "last_status": "ok"
-        }
-      ]
-    },
-    {
-      "date": "2026-10-28",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/1wg_JMNXE2g",
-          "label": "Free Coins",
-          "amount": "",
-          "posted_at": "2026-10-28T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/1wg_JMNXE2g",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/6TEIyMBDDEY",
-          "label": "Free Sticker",
-          "amount": "",
-          "posted_at": "2026-10-28T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/6TEIyMBDDEY",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/MGB2xJwaX3U",
-          "label": "Free Sticker",
-          "amount": "",
-          "posted_at": "2026-10-28T12:00",
-          "checked_at": "2026-10-31T14:14",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/MGB2xJwaX3U",
-          "last_status": "ok"
-        }
-      ]
+     "url": "https://launch.matchmasters.com/l/p/xkVLCDlr_yw",
+     "label": "Free Sticker",
+     "amount": "",
+     "posted_at": "2026-10-31T13:35",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official X post",
+     "source_url": "https://x.com/match_masters/status/2116448841713189007",
+     "last_status": "ok"
     }
-  ],
-  "updated": "2026-10-31T14:14"
+   ]
+  },
+  {
+   "date": "2026-10-30",
+   "links": [
+    {
+     "url": "https://launch.matchmasters.com/l/p/b4TO-aqLLC0",
+     "label": "Free Perks",
+     "amount": "",
+     "posted_at": "2026-10-30T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official WhatsApp channel post",
+     "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/c2DkJ0YsZJs",
+     "label": "Free Coins",
+     "amount": "",
+     "posted_at": "2026-10-30T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/c2DkJ0YsZJs",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/P2YZgk456XU",
+     "label": "Free Tokens",
+     "amount": "",
+     "posted_at": "2026-10-30T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/P2YZgk456XU",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/hYKBy2jll8o",
+     "label": "Free Booster",
+     "amount": "",
+     "posted_at": "2026-10-30T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/hYKBy2jll8o",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/kIFLaOIhp4w",
+     "label": "Free Booster",
+     "amount": "",
+     "posted_at": "2026-10-30T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/kIFLaOIhp4w",
+     "last_status": "ok"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-29",
+   "links": [
+    {
+     "url": "https://launch.matchmasters.com/l/p/HxsVcHNb_Qs",
+     "label": "Free Booster",
+     "amount": "",
+     "posted_at": "2026-10-29T13:48",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official WhatsApp channel post",
+     "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/nxrCCQv0T-E",
+     "label": "Free Booster",
+     "amount": "",
+     "posted_at": "2026-10-29T18:56",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official X post",
+     "source_url": "https://x.com/match_masters",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/qWxKaTv6fYE",
+     "label": "Free Coins",
+     "amount": "",
+     "posted_at": "2026-10-29T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/qWxKaTv6fYE",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/_X5Hk62zw4Y",
+     "label": "Free Coins",
+     "amount": "",
+     "posted_at": "2026-10-29T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/_X5Hk62zw4Y",
+     "last_status": "ok"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-28",
+   "links": [
+    {
+     "url": "https://launch.matchmasters.com/l/p/1wg_JMNXE2g",
+     "label": "Free Coins",
+     "amount": "",
+     "posted_at": "2026-10-28T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/1wg_JMNXE2g",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/6TEIyMBDDEY",
+     "label": "Free Sticker",
+     "amount": "",
+     "posted_at": "2026-10-28T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/6TEIyMBDDEY",
+     "last_status": "ok"
+    },
+    {
+     "url": "https://launch.matchmasters.com/l/p/MGB2xJwaX3U",
+     "label": "Free Sticker",
+     "amount": "",
+     "posted_at": "2026-10-28T12:00",
+     "checked_at": "2026-10-31T14:14",
+     "source": "official gift link",
+     "source_url": "https://launch.matchmasters.com/l/p/MGB2xJwaX3U",
+     "last_status": "ok"
+    }
+   ]
+  }
+ ],
+ "updated": "2026-10-31T14:14"
 }
