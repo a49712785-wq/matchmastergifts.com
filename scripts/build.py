@@ -389,7 +389,7 @@ def build():
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
 </div></main>
 <footer><div class="wrap">
-<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="https://www.facebook.com/matchmastergiftslinks/" target="_blank" rel="noopener">Facebook</a>
+<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://www.facebook.com/matchmastergiftslinks/" target="_blank" rel="noopener">Facebook</a>
 <p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. All gift links come from the game's official posts.</p>
 <p class="disc">© 2026 {BRAND}</p>
 </div></footer>
@@ -593,7 +593,7 @@ def render_booster(b, siblings):
 <div class="sib">{sib_html}</div>
 </div></main>
 <footer><div class="wrap">
-<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="https://www.facebook.com/matchmastergiftslinks/" target="_blank" rel="noopener">Facebook</a>
+<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://www.facebook.com/matchmastergiftslinks/" target="_blank" rel="noopener">Facebook</a>
 <p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. Booster details follow the game's own descriptions and player guides.</p>
 <p class="disc">© 2026 {BRAND}</p>
 </div></footer>
@@ -778,7 +778,7 @@ def build_keys_page():
 {faq_html}
 </div></main>
 <footer><div class="wrap">
-<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="https://www.facebook.com/matchmastergiftslinks/" target="_blank" rel="noopener">Facebook</a>
+<a href="/about/">About</a><a href="/methodology/">How We Verify</a><a href="/contact/">Contact</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="https://www.facebook.com/matchmastergiftslinks/" target="_blank" rel="noopener">Facebook</a>
 <p class="disc">{BRAND} is an independent fan site. Not affiliated with Candivore or Match Masters. Keys are published only after being spotted on the game's official channels.</p>
 <p class="disc">© 2026 {BRAND}</p>
 </div></footer>
@@ -813,6 +813,7 @@ def build_sitemap(booster_slugs):
         ("/about/", "yearly", "0.4"),
         ("/contact/", "yearly", "0.3"),
         ("/privacy/", "yearly", "0.3"),
+        ("/terms/", "yearly", "0.3"),
     ]
     urls = "".join(
         f'  <url><loc>{SITE}{p}</loc><changefreq>{f}</changefreq><priority>{pr}</priority></url>\n'
