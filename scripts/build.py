@@ -854,3 +854,28 @@ if __name__ == "__main__":
         if "1b8c2735c672162e9806a395eebda086" not in _h and "<footer" in _h:
             _p.write_text(_h.replace("<footer", ADSTERRA_BLOCK + "<footer", 1))
     print("adsterra banner injected")
+
+
+# ---------- Adsterra banner #2 (owner-approved 2026-11-01) ----------
+# 300x250, HOMEPAGE ONLY, below the whole How-to-Claim section (after the
+# warning box, before the Daily Gift Log). Delete this block to remove it.
+ADSTERRA_BLOCK_300 = """
+<div style="text-align:center;margin:26px auto 2px;">
+<script>
+  atOptions = {
+    'key' : '16d33cfb142eb5de65410c0ea95dfdd5',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://bauval.org/22/16d33cfb142eb5de65410c0ea95dfdd5"></script>
+</div>
+"""
+if __name__ == "__main__":
+    _hp = ROOT / "index.html"
+    _h = _hp.read_text()
+    if "16d33cfb142eb5de65410c0ea95dfdd5" not in _h and '<section class="logbox">' in _h:
+        _hp.write_text(_h.replace('<section class="logbox">', ADSTERRA_BLOCK_300 + '<section class="logbox">', 1))
+    print("adsterra banner #2 (300x250 homepage) injected")
