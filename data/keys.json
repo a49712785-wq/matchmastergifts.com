@@ -1,6 +1,16 @@
 {
   "keys": [
     {
+      "key": "Monster",
+      "reward": "Free Boosters Box",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-02T12:00",
+      "spotted_at": "2026-11-02T17:52",
+      "status": "active",
+      "notes": "Checked Nov 2. Keys can cap out without notice."
+    },
+    {
       "key": "HappyBoonana",
       "reward": "Free Coins",
       "source": "official reward key",
@@ -31,5 +41,5 @@
       "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
     }
   ],
-  "updated": "2026-11-02T09:13"
+  "updated": "2026-11-02T17:52"
 }
