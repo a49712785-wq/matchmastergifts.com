@@ -857,26 +857,15 @@ if __name__ == "__main__":
     print("adsterra banner injected")
 
 
-# ---------- Adsterra banner #2 (owner-approved 2026-11-01) ----------
-# 300x250, HOMEPAGE ONLY, below the whole How-to-Claim section (after the
-# warning box, before the Daily Gift Log). Delete this block to remove it.
-ADSTERRA_BLOCK_300 = """
-<div style="text-align:center;margin:26px auto 2px;">
-<script>
-  atOptions = {
-    'key' : '16d33cfb142eb5de65410c0ea95dfdd5',
-    'format' : 'iframe',
-    'height' : 250,
-    'width' : 300,
-    'params' : {}
-  };
-</script>
-<script src="https://bauval.org/22/16d33cfb142eb5de65410c0ea95dfdd5"></script>
-</div>
-"""
+# ---------- Adsterra Social Bar test (owner-approved 2026-11-04) ----------
+# 1-week test. REPLACES the 300x250 homepage banner (owner removed it
+# 2026-11-04 — banners underperformed). Script goes right above </body>
+# on every page; the 320x50 footer banner above stays untouched.
+# Delete this block to end the test.
+SOCIALBAR_SCRIPT = '<script data-cfasync="false" src="https://bauval.org/14/5841cdc93a7b9acc59c33c5ca6793bfd"></script>'
 if __name__ == "__main__":
-    _hp = ROOT / "index.html"
-    _h = _hp.read_text()
-    if "16d33cfb142eb5de65410c0ea95dfdd5" not in _h and '<section class="logbox">' in _h:
-        _hp.write_text(_h.replace('<section class="logbox">', ADSTERRA_BLOCK_300 + '<section class="logbox">', 1))
-    print("adsterra banner #2 (300x250 homepage) injected")
+    for _p in [ROOT / "index.html", *sorted(ROOT.glob("*/index.html"))]:
+        _h = _p.read_text()
+        if "5841cdc93a7b9acc59c33c5ca6793bfd" not in _h and "</body>" in _h:
+            _p.write_text(_h.replace("</body>", SOCIALBAR_SCRIPT + "\n</body>", 1))
+    print("adsterra social bar injected")
