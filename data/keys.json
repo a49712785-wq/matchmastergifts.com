@@ -1,6 +1,36 @@
 {
   "keys": [
     {
+      "key": "FinalsSticker",
+      "reward": "Free Gold Sticker",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-05T12:00",
+      "spotted_at": "2026-11-06T00:03",
+      "status": "active",
+      "notes": "Checked Nov 5. Keys can cap out without notice."
+    },
+    {
+      "key": "OutFitSemi",
+      "reward": "Free Outfit",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-05T12:00",
+      "spotted_at": "2026-11-06T00:03",
+      "status": "active",
+      "notes": "Checked Nov 5. Keys can cap out without notice."
+    },
+    {
+      "key": "SemiShield",
+      "reward": "Free Booster Shield",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-05T12:00",
+      "spotted_at": "2026-11-06T00:03",
+      "status": "active",
+      "notes": "Checked Nov 5. Keys can cap out without notice."
+    },
+    {
       "key": "Monster",
       "reward": "Free Boosters Box",
       "source": "official reward key",
@@ -41,5 +71,5 @@
       "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
     }
   ],
-  "updated": "2026-11-05T09:10"
+  "updated": "2026-11-06T00:03"
 }
