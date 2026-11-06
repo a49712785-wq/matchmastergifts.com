@@ -857,15 +857,8 @@ if __name__ == "__main__":
     print("adsterra banner injected")
 
 
-# ---------- Adsterra Social Bar test (owner-approved 2026-11-04) ----------
-# 1-week test. REPLACES the 300x250 homepage banner (owner removed it
-# 2026-11-04 — banners underperformed). Script goes right above </body>
-# on every page; the 320x50 footer banner above stays untouched.
-# Delete this block to end the test.
-SOCIALBAR_SCRIPT = '<script data-cfasync="false" src="https://bauval.org/14/5841cdc93a7b9acc59c33c5ca6793bfd"></script>'
-if __name__ == "__main__":
-    for _p in [ROOT / "index.html", *sorted(ROOT.glob("*/index.html"))]:
-        _h = _p.read_text()
-        if "5841cdc93a7b9acc59c33c5ca6793bfd" not in _h and "</body>" in _h:
-            _p.write_text(_h.replace("</body>", SOCIALBAR_SCRIPT + "\n</body>", 1))
-    print("adsterra social bar injected")
+# ---------- Adsterra Social Bar test — REMOVED 2026-11-07 ----------
+# Owner ended the test early (was ~Nov 4-11): revenue identical to
+# banner-only days (~$0.80/day) but CTR jumped to 10-12% = accidental
+# clicks from fake-notification-style pushes confusing users. The
+# 320x50 footer banner above stays untouched.
