@@ -1,6 +1,16 @@
 {
   "keys": [
     {
+      "key": "Surpriseendstream",
+      "reward": "",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-11T12:00",
+      "spotted_at": "2026-11-12T04:04",
+      "status": "active",
+      "notes": "Checked Nov 12. Keys can cap out without notice."
+    },
+    {
       "key": "Master",
       "reward": "Free Booster Shield",
       "source": "official reward key",
@@ -81,5 +91,5 @@
       "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
     }
   ],
-  "updated": "2026-11-11T09:17"
+  "updated": "2026-11-12T04:04"
 }
