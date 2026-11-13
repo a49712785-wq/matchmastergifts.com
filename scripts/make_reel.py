@@ -159,7 +159,7 @@ def build_comment(rewards):
     lines = [
         "\U0001F381 Tap to claim (opens in Match Masters):",
     ]
-    nums = ["1\uFE0F\u20E3", "2\uFE0F\u20E3", "3\uFE0F\u20E3"]
+    nums = ["1\uFE0F\u20E3", "2\uFE0F\u20E3", "3\uFE0F\u20E3", "4\uFE0F\u20E3", "5\uFE0F\u20E3"]
     for i, r in enumerate(rewards):
         lines.append(f"{nums[i]} {r['name']}: {r['url']}")
     lines += [

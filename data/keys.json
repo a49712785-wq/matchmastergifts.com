@@ -1,95 +1,95 @@
 {
-  "keys": [
-    {
-      "key": "Surpriseendstream",
-      "reward": "",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-11-11T12:00",
-      "spotted_at": "2026-11-12T04:04",
-      "status": "active",
-      "notes": "Checked Nov 12. Keys can cap out without notice."
-    },
-    {
-      "key": "Master",
-      "reward": "Free Booster Shield",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-11-09T12:00",
-      "spotted_at": "2026-11-10T04:22",
-      "status": "expired",
-      "notes": "Checked Nov 12. Keys can cap out without notice."
-    },
-    {
-      "key": "FinalsSticker",
-      "reward": "Free Gold Sticker",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-11-05T12:00",
-      "spotted_at": "2026-11-06T00:03",
-      "status": "expired",
-      "notes": "Checked Nov 11. Keys can cap out without notice."
-    },
-    {
-      "key": "OutFitSemi",
-      "reward": "Free Outfit",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-11-05T12:00",
-      "spotted_at": "2026-11-06T00:03",
-      "status": "expired",
-      "notes": "Checked Nov 11. Keys can cap out without notice."
-    },
-    {
-      "key": "SemiShield",
-      "reward": "Free Booster Shield",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-11-05T12:00",
-      "spotted_at": "2026-11-06T00:03",
-      "status": "expired",
-      "notes": "Checked Nov 11. Keys can cap out without notice."
-    },
-    {
-      "key": "Monster",
-      "reward": "Free Boosters Box",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-11-02T12:00",
-      "spotted_at": "2026-11-02T17:52",
-      "status": "expired",
-      "notes": "Checked Nov 2. Keys can cap out without notice."
-    },
-    {
-      "key": "HappyBoonana",
-      "reward": "Free Coins",
-      "source": "official reward key",
-      "source_url": "https://matchmastergifts.com/reward-keys/",
-      "posted_at": "2026-10-28T12:00",
-      "spotted_at": "2026-10-29T21:34",
-      "status": "expired",
-      "notes": "Checked Oct 29. Keys can cap out without notice — sibling keys from this same drop were already spent the same day, so claim fast."
-    },
-    {
-      "key": "SPOOKY",
-      "reward": "",
-      "source": "official X post",
-      "source_url": "https://x.com/match_masters/status/2109569702603489461",
-      "posted_at": "2026-10-12T13:59",
-      "spotted_at": "2026-10-12T14:04",
-      "status": "expired",
-      "notes": "This week's Reward Key hidden in the official X post image (word written in the cauldron); post says claim your rewards — reward amount not stated in post"
-    },
-    {
-      "key": "MANOR10",
-      "reward": "10% OFF at the official store",
-      "source": "official WhatsApp channel",
-      "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
-      "posted_at": "2026-10-08T14:26",
-      "spotted_at": "2026-10-10T03:43",
-      "status": "expired",
-      "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
-    }
-  ],
-  "updated": "2026-11-13T09:15"
+ "keys": [
+  {
+   "key": "Surpriseendstream",
+   "reward": "",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-11-11T12:00",
+   "spotted_at": "2026-11-12T04:04",
+   "status": "expired",
+   "notes": "Checked Nov 13. Keys can cap out without notice."
+  },
+  {
+   "key": "Master",
+   "reward": "Free Booster Shield",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-11-09T12:00",
+   "spotted_at": "2026-11-10T04:22",
+   "status": "expired",
+   "notes": "Checked Nov 12. Keys can cap out without notice."
+  },
+  {
+   "key": "FinalsSticker",
+   "reward": "Free Gold Sticker",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-11-05T12:00",
+   "spotted_at": "2026-11-06T00:03",
+   "status": "expired",
+   "notes": "Checked Nov 11. Keys can cap out without notice."
+  },
+  {
+   "key": "OutFitSemi",
+   "reward": "Free Outfit",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-11-05T12:00",
+   "spotted_at": "2026-11-06T00:03",
+   "status": "expired",
+   "notes": "Checked Nov 11. Keys can cap out without notice."
+  },
+  {
+   "key": "SemiShield",
+   "reward": "Free Booster Shield",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-11-05T12:00",
+   "spotted_at": "2026-11-06T00:03",
+   "status": "expired",
+   "notes": "Checked Nov 11. Keys can cap out without notice."
+  },
+  {
+   "key": "Monster",
+   "reward": "Free Boosters Box",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-11-02T12:00",
+   "spotted_at": "2026-11-02T17:52",
+   "status": "expired",
+   "notes": "Checked Nov 2. Keys can cap out without notice."
+  },
+  {
+   "key": "HappyBoonana",
+   "reward": "Free Coins",
+   "source": "official reward key",
+   "source_url": "https://matchmastergifts.com/reward-keys/",
+   "posted_at": "2026-10-28T12:00",
+   "spotted_at": "2026-10-29T21:34",
+   "status": "expired",
+   "notes": "Checked Oct 29. Keys can cap out without notice — sibling keys from this same drop were already spent the same day, so claim fast."
+  },
+  {
+   "key": "SPOOKY",
+   "reward": "",
+   "source": "official X post",
+   "source_url": "https://x.com/match_masters/status/2109569702603489461",
+   "posted_at": "2026-10-12T13:59",
+   "spotted_at": "2026-10-12T14:04",
+   "status": "expired",
+   "notes": "This week's Reward Key hidden in the official X post image (word written in the cauldron); post says claim your rewards — reward amount not stated in post"
+  },
+  {
+   "key": "MANOR10",
+   "reward": "10% OFF at the official store",
+   "source": "official WhatsApp channel",
+   "source_url": "https://whatsapp.com/channel/0029VbBSEJ36hENtx5BR7b1x",
+   "posted_at": "2026-10-08T14:26",
+   "spotted_at": "2026-10-10T03:43",
+   "status": "expired",
+   "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
+  }
+ ],
+ "updated": "2026-11-13T09:15"
 }
