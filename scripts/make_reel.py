@@ -28,7 +28,7 @@ SITE_URL = "https://matchmastergifts.com/"
 HASHTAGS = ("#MatchMasters #MatchMastersFreeGifts #FreeGifts #MatchMastersGifts "
             "#MobileGaming #FreeBoosters #PuzzleGames #GamingRewards")
 SEG = 2.5          # seconds per text segment
-MAX_REWARDS = 3
+MAX_REWARDS = 4
 
 
 def esc(t: str) -> str:
