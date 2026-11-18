@@ -390,6 +390,7 @@ def build():
 <a href="/free-stickers/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Stickers Guide</b><br><span style="color:var(--mut);font-size:.88rem">Trading rules, Gold Sunday, Tokens &amp; album completion rewards</span></a>
 <a href="/best-boosters/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Best Boosters Ranked</b><br><span style="color:var(--mut);font-size:.88rem">Top 10 ranked, best by mode, best value &amp; which to save</span></a>
 <a href="/tournaments/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Tournaments Guide</b><br><span style="color:var(--mut);font-size:.88rem">Knockout brackets, prizes, booster picks &amp; winning strategy</span></a>
+<a href="/free-vs-buying/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free vs Buying Coins</b><br><span style="color:var(--mut);font-size:.88rem">Is paying worth it? Real prices, the coin math &amp; the honest verdict</span></a>
 </div></section>
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
 </div></main>
@@ -820,6 +821,7 @@ def build_sitemap(booster_slugs):
         ("/free-stickers/", "monthly", "0.7"),
         ("/best-boosters/", "monthly", "0.7"),
         ("/tournaments/", "monthly", "0.7"),
+        ("/free-vs-buying/", "monthly", "0.7"),
         ("/methodology/", "monthly", "0.6"),
         ("/about/", "yearly", "0.4"),
         ("/contact/", "yearly", "0.3"),
