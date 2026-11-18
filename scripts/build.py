@@ -336,6 +336,7 @@ def build():
   gtag('config', 'G-ERPSET5F4J');
 </script>
 <meta charset="UTF-8">
+<meta name="google-adsense-account" content="ca-pub-1864369969172769">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
@@ -552,6 +553,7 @@ def render_booster(b, siblings):
   gtag('config', 'G-ERPSET5F4J');
 </script>
 <meta charset="UTF-8">
+<meta name="google-adsense-account" content="ca-pub-1864369969172769">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
@@ -733,6 +735,7 @@ def build_keys_page():
   gtag('config', 'G-ERPSET5F4J');
 </script>
 <meta charset="UTF-8">
+<meta name="google-adsense-account" content="ca-pub-1864369969172769">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
