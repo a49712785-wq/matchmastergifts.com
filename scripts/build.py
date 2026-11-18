@@ -387,6 +387,7 @@ def build():
 <a href="/how-to-redeem/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>How to Redeem Gift Links</b><br><span style="color:var(--mut);font-size:.88rem">Fix every error: Facebook error page, already claimed, expired</span></a>
 <a href="/match-masters-vs-coin-master/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Match Masters vs Coin Master</b><br><span style="color:var(--mut);font-size:.88rem">Free rewards, skill vs luck, boosters vs pets — honest comparison</span></a>
 <a href="/free-stickers/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Stickers Guide</b><br><span style="color:var(--mut);font-size:.88rem">Trading rules, Gold Sunday, Tokens &amp; album completion rewards</span></a>
+<a href="/best-boosters/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Best Boosters Ranked</b><br><span style="color:var(--mut);font-size:.88rem">Top 10 ranked, best by mode, best value &amp; which to save</span></a>
 </div></section>
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
 </div></main>
@@ -813,6 +814,7 @@ def build_sitemap(booster_slugs):
         ("/free-coins/", "monthly", "0.8"),
         ("/match-masters-vs-coin-master/", "monthly", "0.7"),
         ("/free-stickers/", "monthly", "0.7"),
+        ("/best-boosters/", "monthly", "0.7"),
         ("/methodology/", "monthly", "0.6"),
         ("/about/", "yearly", "0.4"),
         ("/contact/", "yearly", "0.3"),
