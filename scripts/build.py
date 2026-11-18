@@ -385,6 +385,7 @@ def build():
 <a href="/free-boosters/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Boosters Guide</b><br><span style="color:var(--mut);font-size:.88rem">Every tier explained + 7 real ways to get boosters free</span></a>
 <a href="/free-coins/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Free Coins Guide</b><br><span style="color:var(--mut);font-size:.88rem">What coins do + 7 real ways to refill your balance</span></a>
 <a href="/how-to-redeem/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>How to Redeem Gift Links</b><br><span style="color:var(--mut);font-size:.88rem">Fix every error: Facebook error page, already claimed, expired</span></a>
+<a href="/match-masters-vs-coin-master/" style="background:var(--card);border:1px solid #334155;border-radius:12px;padding:14px 16px;color:#fff;text-decoration:none;display:block"><b>Match Masters vs Coin Master</b><br><span style="color:var(--mut);font-size:.88rem">Free rewards, skill vs luck, boosters vs pets — honest comparison</span></a>
 </div></section>
 <div class="faq"><h2>Questions, answered honestly</h2>{faq_html}</div>
 </div></main>
@@ -809,6 +810,7 @@ def build_sitemap(booster_slugs):
         ("/how-to-redeem/", "monthly", "0.8"),
         ("/free-boosters/", "monthly", "0.8"),
         ("/free-coins/", "monthly", "0.8"),
+        ("/match-masters-vs-coin-master/", "monthly", "0.7"),
         ("/methodology/", "monthly", "0.6"),
         ("/about/", "yearly", "0.4"),
         ("/contact/", "yearly", "0.3"),
