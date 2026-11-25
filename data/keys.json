@@ -1,6 +1,26 @@
 {
   "keys": [
     {
+      "key": "RICHWELCOME",
+      "reward": "Free Stickers",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-25T12:00",
+      "spotted_at": "2026-11-25T23:57",
+      "status": "active",
+      "notes": "Checked Nov 25. Keys can cap out without notice."
+    },
+    {
+      "key": "JELLYENDSTREAM",
+      "reward": "Free Coins",
+      "source": "official reward key",
+      "source_url": "https://matchmastergifts.com/reward-keys/",
+      "posted_at": "2026-11-25T12:00",
+      "spotted_at": "2026-11-25T23:57",
+      "status": "active",
+      "notes": "Checked Nov 25. Keys can cap out without notice."
+    },
+    {
       "key": "FrogLiveEnd",
       "reward": "Free Coins",
       "source": "official reward key",
@@ -121,5 +141,5 @@
       "notes": "Halloween Manor promo code shared on the official WhatsApp channel; apply at matchmasters.com"
     }
   ],
-  "updated": "2026-11-25T09:15"
+  "updated": "2026-11-25T23:57"
 }
