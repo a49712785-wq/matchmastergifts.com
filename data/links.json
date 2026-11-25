@@ -2,6 +2,21 @@
   "_note": "Daily data file. The collector script appends a new day object each morning with links found on official Match Masters posts. Expired days (>3 days) are dropped at build time.",
   "days": [
     {
+      "date": "2026-11-25",
+      "links": [
+        {
+          "url": "https://launch.matchmasters.com/l/p/AbZ7xXjcTIo",
+          "label": "Free Stickers",
+          "amount": "",
+          "posted_at": "2026-11-25T12:00",
+          "checked_at": "2026-11-25T17:53",
+          "source": "official gift link",
+          "source_url": "https://launch.matchmasters.com/l/p/AbZ7xXjcTIo",
+          "last_status": "ok"
+        }
+      ]
+    },
+    {
       "date": "2026-11-24",
       "links": [
         {
@@ -9,7 +24,7 @@
           "label": "Free Stickers",
           "amount": "",
           "posted_at": "2026-11-24T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/1vak_6Tbdtw",
           "last_status": "ok"
@@ -19,7 +34,7 @@
           "label": "Free Coins",
           "amount": "",
           "posted_at": "2026-11-24T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/NpZQhQv6Li8",
           "last_status": "ok"
@@ -29,7 +44,7 @@
           "label": "Free Stickers",
           "amount": "",
           "posted_at": "2026-11-24T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/_Azst9jOH6o",
           "last_status": "ok"
@@ -44,7 +59,7 @@
           "label": "Free Tokens",
           "amount": "",
           "posted_at": "2026-11-23T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/Xb5SUmuS9S4",
           "last_status": "ok"
@@ -54,7 +69,7 @@
           "label": "Free Stickers",
           "amount": "",
           "posted_at": "2026-11-23T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/ynx3xCj9tSk",
           "last_status": "ok"
@@ -64,7 +79,7 @@
           "label": "Free Perks",
           "amount": "",
           "posted_at": "2026-11-23T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/XZlJ1VUuSDM",
           "last_status": "ok"
@@ -74,7 +89,7 @@
           "label": "Free Booster",
           "amount": "",
           "posted_at": "2026-11-23T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/WQjD_59jpog",
           "last_status": "ok"
@@ -89,7 +104,7 @@
           "label": "Free Coins & Start Race",
           "amount": "",
           "posted_at": "2026-11-22T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/9l8GaqWqDBw",
           "last_status": "ok"
@@ -99,7 +114,7 @@
           "label": "Free Perks",
           "amount": "",
           "posted_at": "2026-11-22T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/9-oKfgPEga8",
           "last_status": "ok"
@@ -109,7 +124,7 @@
           "label": "Free Stickers",
           "amount": "",
           "posted_at": "2026-11-22T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/TyCQ1sQpfjs",
           "last_status": "ok"
@@ -119,7 +134,7 @@
           "label": "Free Coins",
           "amount": "",
           "posted_at": "2026-11-22T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/1XtKPr9Xx3U",
           "last_status": "ok"
@@ -129,78 +144,13 @@
           "label": "Free Tokens",
           "amount": "",
           "posted_at": "2026-11-22T12:00",
-          "checked_at": "2026-11-25T09:15",
+          "checked_at": "2026-11-25T17:53",
           "source": "official gift link",
           "source_url": "https://launch.matchmasters.com/l/p/z_CRN7F68wk",
           "last_status": "ok"
         }
       ]
-    },
-    {
-      "date": "2026-11-21",
-      "links": [
-        {
-          "url": "https://launch.matchmasters.com/l/p/tMMciYxxQis",
-          "label": "Free Tokens",
-          "amount": "",
-          "posted_at": "2026-11-21T12:00",
-          "checked_at": "2026-11-25T09:15",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/tMMciYxxQis",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/PHKNwvxC1hM",
-          "label": "Free Gift",
-          "amount": "",
-          "posted_at": "2026-11-21T12:00",
-          "checked_at": "2026-11-25T09:15",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/PHKNwvxC1hM",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/ozf2krtC-fI",
-          "label": "Free Perks",
-          "amount": "",
-          "posted_at": "2026-11-21T12:00",
-          "checked_at": "2026-11-25T09:15",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/ozf2krtC-fI",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/Y5evqWBRSw0",
-          "label": "Free Stickers",
-          "amount": "",
-          "posted_at": "2026-11-21T12:00",
-          "checked_at": "2026-11-25T09:15",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/Y5evqWBRSw0",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/9W8-mW5L54U",
-          "label": "Free Perks",
-          "amount": "",
-          "posted_at": "2026-11-21T12:00",
-          "checked_at": "2026-11-25T09:15",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/9W8-mW5L54U",
-          "last_status": "ok"
-        },
-        {
-          "url": "https://launch.matchmasters.com/l/p/Y0LkHlhLL9k",
-          "label": "Free Tokens",
-          "amount": "",
-          "posted_at": "2026-11-21T12:00",
-          "checked_at": "2026-11-25T09:15",
-          "source": "official gift link",
-          "source_url": "https://launch.matchmasters.com/l/p/Y0LkHlhLL9k",
-          "last_status": "ok"
-        }
-      ]
     }
   ],
-  "updated": "2026-11-25T09:15"
+  "updated": "2026-11-25T17:53"
 }
