@@ -60,12 +60,20 @@ def _is_live(posted_at, now):
         return True
 
 
-def active_links():
+def active_links(today_only=False):
     with open(LINKS_JSON) as f:
         data = json.load(f)
     now = datetime.datetime.now(ZoneInfo("Asia/Karachi"))
+    today_str = now.date().isoformat()
     out = []
     for day in data.get("days", []):
+        # Breaking-mode honesty fix (2026-11-26): a reel built after 12:00 PKT
+        # with the "JUST DROPPED" hook must carry ONLY links dropped today.
+        # Previously it took the newest 4 live links, so on a 3-drop day it
+        # pulled in 1 link from yesterday and advertised "4 NEW GIFTS" while
+        # the site said 3 new today (count drift, flagged repeatedly Nov 7-17).
+        if today_only and day.get("date", "") != today_str:
+            continue
         for l in day.get("links", []):
             # Honesty fix (2026-10-08): last_status=ok only means the URL
             # still resolves at its last recheck — it does NOT mean the
@@ -183,12 +191,23 @@ def build_youtube(rewards, breaking=False):
             f"\U0001F310 {SITE_URL}")
 
 
-def main():
-    rewards = active_links()
-    if not rewards:
-        print("SKIP: no active links — no reel today")
-        return 0
+def _has_today_drop(today_str):
+    """True if at least one live (last_status ok) link was dropped today."""
+    try:
+        with open(LINKS_JSON) as f:
+            data = json.load(f)
+    except Exception:
+        return False
+    for day in data.get("days", []):
+        if day.get("date", "") != today_str:
+            continue
+        for l in day.get("links", []):
+            if l.get("last_status") == "ok":
+                return True
+    return False
 
+
+def main():
     today = datetime.date.today()
     today_str = today.isoformat()
     # Breaking mode (user decision 2026-10-06 — freshness is key in this niche):
@@ -198,7 +217,13 @@ def main():
         pkt_hour = datetime.datetime.now(ZoneInfo("Asia/Karachi")).hour
     except Exception:
         pkt_hour = 0
-    breaking = pkt_hour >= 12 and any(r.get("date") == today_str for r in rewards)
+    # A breaking reel carries only today's drops, so its "N NEW GIFTS" count
+    # can never drift above the day's real new-drop count (fix 2026-11-26).
+    breaking = pkt_hour >= 12 and _has_today_drop(today_str)
+    rewards = active_links(today_only=breaking)
+    if not rewards:
+        print("SKIP: no active links — no reel today")
+        return 0
     out_dir = os.path.join(OUT_ROOT, today.isoformat())
     os.makedirs(out_dir, exist_ok=True)
 
